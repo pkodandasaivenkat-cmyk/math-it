@@ -1,5 +1,5 @@
 // sw.js - service worker for గణితం
-const CACHE = 'tmt-v12';
+const CACHE = 'tmt-v13';
 const ASSETS = [
   './',
   './index.html',

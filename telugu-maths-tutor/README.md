@@ -25,7 +25,7 @@ Math It is a Class 10 Maths practice app in Telugu and English, made for Telugu-
 
 ## Offline and data
 
-- The service worker caches the app shell and the content. The cache name is set in `sw.js` (currently `tmt-v12`).
+- The service worker caches the app shell and the content. The cache name is set in `sw.js` (currently `tmt-v13`).
 - Progress is saved in IndexedDB on the phone. Nothing is sent to a server.
 - No videos, no CDN and no external fonts. The app uses system fonts only.
 
