@@ -1,45 +1,57 @@
-# గణితం
+# మ్యాత్ ఇట్ (Math It)
 
-A mobile-first Progressive Web App (PWA) that helps Class 10 students in Andhra Pradesh government schools practise Maths in Telugu. It needs almost no typing: answers are chosen with large buttons. Explanations and practice are in Telugu, with English alongside for exam understanding.
+## What it is
 
-## Chapters
+Math It is a Class 10 Maths practice app in Telugu and English, made for Telugu-medium learners. It is a Progressive Web App (PWA) with 3 chapters:
 
 1. Real Numbers (వాస్తవ సంఖ్యలు)
 2. Polynomials (బహుపదులు)
 3. Linear Equations in Two Variables (రెండు చరరాశులలో రేఖీయ సమీకరణాలు)
 
-## Run on Windows
+## Install as an app (PWA)
+
+1. On an Android phone, open Chrome and go to https://pkodandasaivenkat-cmyk.github.io/math-it/telugu-maths-tutor/
+2. Open the Chrome menu and choose **Install app** or **Add to Home screen**.
+3. After the first visit, the app works offline.
+
+## Run locally on Windows
 
 1. Open a terminal (PowerShell or Command Prompt) in the `telugu-maths-tutor` folder.
 2. Start a local server:
    ```
    python -m http.server 8000
    ```
-3. On the PC, open http://localhost:8000
-4. On an Android phone on the same Wi-Fi, open Chrome and go to `http://<PC-IP-address>:8000` (find the PC's IP with `ipconfig` in the terminal).
-5. To install: in Android Chrome, open the menu and tap **Add to Home screen**.
+3. Open http://localhost:8000/ in your browser.
 
-## Offline behaviour
+## Offline and data
 
-The service worker precaches the app shell and the lesson content, so the app works without data after the first load.
+- The service worker caches the app shell and the content. The cache name is set in `sw.js` (currently `tmt-v11`).
+- Progress is saved in IndexedDB on the phone. Nothing is sent to a server.
+- No videos, no CDN and no external fonts. The app uses system fonts only.
 
-## Data and privacy
+## Features
 
-- All progress data stays on the device, in IndexedDB. Nothing is sent to a server.
+- **Learn**: one lesson card at a time.
+- **Practice**: 10 questions per set, with adaptive difficulty and hints after mistakes.
+- **Ask**: a rule-based helper, not an AI model.
+- **Progress**: topic bars and a streak counter.
+- **Share code**: a read-only parent view. Open `parent.html` and paste the code.
+
+## Privacy
+
+- The app stores only a nickname, an avatar and a 4-digit PIN.
+- The PIN is stored as a salted hash.
 - No phone number, email address or real name is collected.
-- The content is original, written for this app, and is not textbook text.
-- The English fields are there to help students understand exam questions.
-
-## Parent view and share code
-
-The app creates a share code that summarises a student's progress: a base64url-encoded JSON snapshot, a dot, and a short checksum. The snapshot contains a nickname, mastery per topic, streak days and recent attempts. The code works offline with no server.
-
-Open `parent.html` (linked from the app) and paste the code. The page decodes it in the browser and shows the results. It stores nothing and makes no network calls.
 
 ## Files
 
-- `index.html`, `app.js`, `styles.css` – the app
-- `db.js` – IndexedDB storage
-- `sw.js`, `manifest.webmanifest` – offline support and installation
-- `parent.html` – share-code viewer
+- `index.html`, `app.js`, `db.js`, `styles.css` – the app
+- `sw.js` – service worker (offline cache)
+- `manifest.webmanifest` – install settings
+- `icons/icon.svg` – app icon
+- `content/*.json` – lesson and question content
+- `parent.html` – read-only parent view
 
+## Known gaps
+
+- The PNG icons `icons/icon-192.png` and `icons/icon-512.png` are not yet included. The manifest references them, so Android may show a generic icon until they are added.

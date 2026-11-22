@@ -1,6 +1,7 @@
 {
-  "name": "గణితం",
-  "short_name": "గణితం",
+  "name": "మ్యాత్ ఇట్ (Math It)",
+  "short_name": "Math It",
+  "description": "Class 10 Maths practice in Telugu and English",
   "lang": "te",
   "start_url": "./index.html",
   "scope": "./",
