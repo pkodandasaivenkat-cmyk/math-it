@@ -1,0 +1,255 @@
+{
+  "id": "real-numbers",
+  "title": "వాస్తవ సంఖ్యలు",
+  "title_en": "Real Numbers",
+  "lessons": [
+    {
+      "title": "యూక్లిడ్ భాగహార సూత్రం",
+      "title_en": "Euclid's Division Lemma",
+      "lines": [
+        "ఏ రెండు ధనపూర్ణ సంఖ్యలు a, b అయినా a = bq + r అని రాయవచ్చు.",
+        "ఇక్కడ q భాగఫలం, r శేషం.",
+        "శేషం r ఎప్పుడూ 0 నుండి b కంటే తక్కువ మధ్య ఉంటుంది.",
+        "ఈ సూత్రంతో రెండు సంఖ్యల గరిష్ట ఉమ్మడి భాజకాన్ని కనుగొనవచ్చు."
+      ],
+      "lines_en": [
+        "For any two positive integers a and b, we can write a = bq + r.",
+        "Here q is the quotient and r is the remainder.",
+        "The remainder r is always from 0 up to, but less than, b.",
+        "This rule helps us find the HCF of two numbers."
+      ],
+      "example": "17 ను 5 తో భాగిస్తే: 17 = 5 × 3 + 2. భాగఫలం 3, శేషం 2.",
+      "example_en": "Dividing 17 by 5: 17 = 5 × 3 + 2. Quotient 3, remainder 2.",
+      "keyTerm": "Euclid's division lemma"
+    },
+    {
+      "title": "ప్రధాన కారణాంకీకరణ",
+      "title_en": "Prime Factorisation",
+      "lines": [
+        "ప్రధాన సంఖ్య అంటే 1 కంటే పెద్దదై, 1 మరియు తనను మాత్రమే భాగించే సంఖ్య.",
+        "ఒక సంఖ్యను ప్రధాన సంఖ్యల లబ్ధంగా రాయడం ప్రధాన కారణాంకీకరణ.",
+        "ఉదాహరణకు 12 = 2 × 2 × 3.",
+        "ఈ రూపం నుండి HCF, LCM రెండింటినీ సులభంగా కనుగొనవచ్చు."
+      ],
+      "lines_en": [
+        "A prime number is greater than 1 and divisible only by 1 and itself.",
+        "Writing a number as a product of primes is prime factorisation.",
+        "For example, 12 = 2 × 2 × 3.",
+        "From this form, we can easily find both the HCF and the LCM."
+      ],
+      "example": "12 = 2 × 2 × 3, 18 = 2 × 3 × 3. ఉమ్మడి కారణాంకాలు 2 × 3 = 6.",
+      "example_en": "12 = 2 × 2 × 3, 18 = 2 × 3 × 3. Common factors 2 × 3 = 6.",
+      "keyTerm": "Prime factorisation"
+    },
+    {
+      "title": "HCF మరియు LCM",
+      "title_en": "HCF and LCM",
+      "lines": [
+        "HCF: రెండు సంఖ్యలను సమానంగా భాగించే అతి పెద్ద సంఖ్య.",
+        "LCM: రెండు సంఖ్యల ఉమ్మడి గుణిజాల్లో అతి చిన్నది.",
+        "HCF × LCM = మొదటి సంఖ్య × రెండో సంఖ్య.",
+        "ఈ సంబంధంతో మీ లెక్కను తనిఖీ చేసుకోవచ్చు."
+      ],
+      "lines_en": [
+        "HCF: the largest number that divides both numbers exactly.",
+        "LCM: the smallest of the common multiples of two numbers.",
+        "HCF × LCM = first number × second number.",
+        "Use this relation to check your answer."
+      ],
+      "example": "12 మరియు 18: HCF = 6, LCM = 36. 6 × 36 = 216 = 12 × 18.",
+      "example_en": "12 and 18: HCF = 6, LCM = 36. 6 × 36 = 216 = 12 × 18.",
+      "keyTerm": "HCF and LCM"
+    },
+    {
+      "title": "అకరణీయం కాని సంఖ్యలు",
+      "title_en": "Irrational Numbers",
+      "lines": [
+        "p/q రూపంలో రాయగలిగే సంఖ్యను అకరణీయ సంఖ్య అంటారు (q ≠ 0).",
+        "√2, √3, √5 వంటి వర్గమూలాలు అకరణీయం కావు.",
+        "అకరణీయ సంఖ్య దశాంశ రూపం అంతమవుతుంది లేదా ఆవర్తనమవుతుంది.",
+        "అకరణీయం కాని సంఖ్య దశాంశ రూపం అంతమవదు, ఆవర్తనం కాదు."
+      ],
+      "lines_en": [
+        "A number that can be written as p/q (q ≠ 0) is a rational number.",
+        "Square roots such as √2, √3 and √5 are not rational.",
+        "A rational number's decimal form either terminates or repeats.",
+        "An irrational number's decimal form neither terminates nor repeats."
+      ],
+      "example": "√2 ను p/q గా రాస్తే వైరుధ్యం వస్తుంది, కాబట్టి √2 అకరణీయం కాదు.",
+      "example_en": "If √2 is written as p/q, a contradiction arises, so √2 is not rational.",
+      "keyTerm": "Irrational numbers"
+    }
+  ],
+  "doubts": [
+    {
+      "id": "rn-euclid",
+      "label": "భాగహారం",
+      "keywords": ["భాగహారం", "శేషం", "యూక్లిడ్", "భాగఫలం", "euclid"],
+      "answer": "a = bq + r. ఇక్కడ 0 ≤ r < b. ఉదాహరణ: 17 = 5 × 3 + 2."
+    },
+    {
+      "id": "rn-hcf",
+      "label": "HCF / LCM",
+      "keywords": ["hcf", "lcm", "గరిష్ట", "కనిష్ట", "ఉమ్మడి", "గుణిజం", "కారణాంక"],
+      "answer": "HCF కోసం రెండు సంఖ్యల ప్రధాన కారణాంకాల ఉమ్మడి భాగాలను గుణించండి. LCM కోసం అన్ని ప్రధాన కారణాంకాల గరిష్ట ఘాతాలను గుణించండి. HCF × LCM = a × b."
+    }
+  ],
+  "questions": [
+    {
+      "id": "rn-01",
+      "topic": "real-numbers",
+      "subtopic": "HCF",
+      "difficulty": 1,
+      "question": "12 మరియు 18 యొక్క HCF ఎంత?",
+      "question_en": "What is the HCF of 12 and 18?",
+      "options": ["2", "3", "6", "12"],
+      "options_en": ["2", "3", "6", "12"],
+      "correct": 2,
+      "mistake": "12 = 2×2×3, 18 = 2×3×3. ఉమ్మడి భాగాలు 2 మరియు 3. గుణిస్తే 6.",
+      "mistake_en": "12 = 2×2×3, 18 = 2×3×3. Common parts are 2 and 3. Multiply them: 6."
+    },
+    {
+      "id": "rn-02",
+      "topic": "real-numbers",
+      "subtopic": "LCM",
+      "difficulty": 1,
+      "question": "4 మరియు 6 యొక్క LCM ఎంత?",
+      "question_en": "What is the LCM of 4 and 6?",
+      "options": ["8", "10", "12", "24"],
+      "options_en": ["8", "10", "12", "24"],
+      "correct": 2,
+      "mistake": "4 గుణిజాలు: 4, 8, 12. 6 గుణిజాలు: 6, 12. మొదటి ఉమ్మడి గుణిజం 12.",
+      "mistake_en": "Multiples of 4: 4, 8, 12. Multiples of 6: 6, 12. The first common multiple is 12."
+    },
+    {
+      "id": "rn-03",
+      "topic": "real-numbers",
+      "subtopic": "యూక్లిడ్ భాగహారం",
+      "difficulty": 1,
+      "question": "17 ను 5 తో భాగిస్తే శేషం ఎంత?",
+      "question_en": "What is the remainder when 17 is divided by 5?",
+      "options": ["0", "1", "2", "3"],
+      "options_en": ["0", "1", "2", "3"],
+      "correct": 2,
+      "mistake": "5 × 3 = 15. 17 − 15 = 2. శేషం 2.",
+      "mistake_en": "5 × 3 = 15. 17 − 15 = 2. The remainder is 2."
+    },
+    {
+      "id": "rn-04",
+      "topic": "real-numbers",
+      "subtopic": "ప్రధాన కారణాంకాలు",
+      "difficulty": 1,
+      "question": "2 × 2 × 3 యొక్క విలువ ఎంత?",
+      "question_en": "What is the value of 2 × 2 × 3?",
+      "options": ["6", "8", "12", "14"],
+      "options_en": ["6", "8", "12", "14"],
+      "correct": 2,
+      "mistake": "2 × 2 = 4, 4 × 3 = 12. గుణకారాన్ని ఒక్కొక్కటిగా చేయండి.",
+      "mistake_en": "2 × 2 = 4, then 4 × 3 = 12. Multiply one step at a time."
+    },
+    {
+      "id": "rn-05",
+      "topic": "real-numbers",
+      "subtopic": "HCF",
+      "difficulty": 2,
+      "question": "36 మరియు 48 యొక్క HCF ఎంత?",
+      "question_en": "What is the HCF of 36 and 48?",
+      "options": ["4", "6", "12", "24"],
+      "options_en": ["4", "6", "12", "24"],
+      "correct": 2,
+      "mistake": "36 = 2×2×3×3, 48 = 2×2×2×2×3. ఉమ్మడి భాగాలు 2×2×3 = 12.",
+      "mistake_en": "36 = 2×2×3×3, 48 = 2×2×2×2×3. Common parts 2×2×3 = 12."
+    },
+    {
+      "id": "rn-06",
+      "topic": "real-numbers",
+      "subtopic": "LCM",
+      "difficulty": 2,
+      "question": "12 మరియు 18 యొక్క LCM ఎంత?",
+      "question_en": "What is the LCM of 12 and 18?",
+      "options": ["18", "24", "36", "72"],
+      "options_en": ["18", "24", "36", "72"],
+      "correct": 2,
+      "mistake": "LCM కోసం ప్రతి ప్రధాన కారణాంకం గరిష్ట ఘాతం తీసుకోండి: 2², 3². 4 × 9 = 36.",
+      "mistake_en": "For LCM, take the highest power of each prime: 2², 3². 4 × 9 = 36."
+    },
+    {
+      "id": "rn-07",
+      "topic": "real-numbers",
+      "subtopic": "అకరణీయ సంఖ్యలు",
+      "difficulty": 2,
+      "question": "√2 ఏ రకమైన సంఖ్య?",
+      "question_en": "What kind of number is √2?",
+      "options": ["అకరణీయ సంఖ్య", "అకరణీయం కాని సంఖ్య", "పూర్ణ సంఖ్య", "సహజ సంఖ్య"],
+      "options_en": ["Rational number", "Irrational number", "Integer", "Natural number"],
+      "correct": 1,
+      "mistake": "√2 ను p/q గా రాయలేము. దశాంశ రూపం అంతం కాదు, ఆవర్తనం కాదు.",
+      "mistake_en": "√2 cannot be written as p/q. Its decimal form neither ends nor repeats."
+    },
+    {
+      "id": "rn-08",
+      "topic": "real-numbers",
+      "subtopic": "దశాంశ రూపం",
+      "difficulty": 2,
+      "question": "13/8 యొక్క దశాంశ రూపం ఎలా ఉంటుంది?",
+      "question_en": "What is the decimal form of 13/8?",
+      "options": ["అంతమయ్యే దశాంశం", "ఆవర్తన దశాంశం", "అంతం కాని దశాంశం", "పూర్ణ సంఖ్య"],
+      "options_en": ["Terminating decimal", "Repeating decimal", "Non-terminating decimal", "Integer"],
+      "correct": 0,
+      "mistake": "హరంలో 8 = 2 × 2 × 2 మాత్రమే ఉంది. అంటే దశాంశం అంతమవుతుంది: 1.625.",
+      "mistake_en": "The denominator 8 = 2 × 2 × 2 has only the prime 2. So the decimal terminates: 1.625."
+    },
+    {
+      "id": "rn-09",
+      "topic": "real-numbers",
+      "subtopic": "అకరణీయం కాని సంఖ్యలు",
+      "difficulty": 3,
+      "question": "3 + √5 ఏ రకమైన సంఖ్య?",
+      "question_en": "What kind of number is 3 + √5?",
+      "options": ["అకరణీయ సంఖ్య", "అకరణీయం కాని సంఖ్య", "పూర్ణ సంఖ్య", "సున్న"],
+      "options_en": ["Rational number", "Irrational number", "Integer", "Zero"],
+      "correct": 1,
+      "mistake": "అకరణీయ సంఖ్యకు √5 ను తీసేస్తే మిగిలిన భాగం అకరణీయం కావాలి. √5 అకరణీయం కాదు కాబట్టి మొత్తం కూడా అకరణీయం కాదు.",
+      "mistake_en": "If the sum were rational, subtracting 3 would leave √5 rational. Since √5 is not rational, 3 + √5 is not rational either."
+    },
+    {
+      "id": "rn-10",
+      "topic": "real-numbers",
+      "subtopic": "HCF × LCM",
+      "difficulty": 3,
+      "question": "రెండు సంఖ్యల HCF 4, LCM 60. ఒక సంఖ్య 20 అయితే రెండో సంఖ్య ఎంత?",
+      "question_en": "The HCF of two numbers is 4 and their LCM is 60. If one number is 20, what is the other number?",
+      "options": ["8", "10", "12", "15"],
+      "options_en": ["8", "10", "12", "15"],
+      "correct": 2,
+      "mistake": "HCF × LCM = a × b. 4 × 60 = 240. 240 ÷ 20 = 12.",
+      "mistake_en": "HCF × LCM = a × b. 4 × 60 = 240. 240 ÷ 20 = 12."
+    },
+    {
+      "id": "rn-11",
+      "topic": "real-numbers",
+      "subtopic": "దశాంశ నుండి భిన్నం",
+      "difficulty": 3,
+      "question": "0.375 ను p/q రూపంలో రాస్తే ఎలా ఉంటుంది?",
+      "question_en": "How is 0.375 written in the form p/q?",
+      "options": ["3/8", "3/5", "5/8", "3/4"],
+      "options_en": ["3/8", "3/5", "5/8", "3/4"],
+      "correct": 0,
+      "mistake": "0.375 = 375/1000. 375 మరియు 1000 లను 125 తో భాగిస్తే 3/8 వస్తుంది.",
+      "mistake_en": "0.375 = 375/1000. Dividing 375 and 1000 by 125 gives 3/8."
+    },
+    {
+      "id": "rn-12",
+      "topic": "real-numbers",
+      "subtopic": "ప్రధాన కారణాంకాలు",
+      "difficulty": 3,
+      "question": "7 × 11 × 13 + 13 అనే సంఖ్య ఏ రకం?",
+      "question_en": "What kind of number is 7 × 11 × 13 + 13?",
+      "options": ["ప్రధాన సంఖ్య", "సంయుక్త సంఖ్య", "అకరణీయం కాని సంఖ్య", "సున్న"],
+      "options_en": ["Prime number", "Composite number", "Irrational number", "Zero"],
+      "correct": 1,
+      "mistake": "13 ను ఉమ్మడిగా తీయండి: 13 × (7 × 11 + 1) = 13 × 78. ఇది రెండు కంటే ఎక్కువ భాగాలున్న సంఖ్య.",
+      "mistake_en": "Take 13 out as a common factor: 13 × (7 × 11 + 1) = 13 × 78. It has more than two factors, so it is composite."
+    }
+  ]
+}

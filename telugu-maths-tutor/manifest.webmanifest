@@ -1,0 +1,17 @@
+{
+  "name": "Telugu Maths Tutor",
+  "short_name": "Maths Tutor",
+  "lang": "te",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#0b2545",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

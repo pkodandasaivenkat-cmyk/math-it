@@ -1,0 +1,236 @@
+{
+  "id": "linear-equations",
+  "title": "రెండు చరాల రేఖీయ సమీకరణాలు",
+  "title_en": "Linear Equations in Two Variables",
+  "lessons": [
+    {
+      "title": "రెండు చరాల సమీకరణం",
+      "title_en": "Linear equation in two variables",
+      "lines": [
+        "ax + by + c = 0 రూపంలో ఉన్న సమీకరణాన్ని రెండు చరాల రేఖీయ సమీకరణం అంటారు.",
+        "దీనికి అనేక పరిష్కారాల జతలు ఉంటాయి.",
+        "రెండు సమీకరణాలు కలిసి ఇచ్చే ఒకే జత (x, y) ఉమ్మడి పరిష్కారం.",
+        "విలువలను సమీకరణంలో పెట్టి తనిఖీ చేయండి."
+      ],
+      "lines_en": [
+        "An equation of the form ax + by + c = 0 is called a linear equation in two variables.",
+        "It has many pairs of solutions.",
+        "A pair (x, y) that satisfies both equations together is their common solution.",
+        "Put the values back into the equation to check."
+      ],
+      "example": "x + y = 5 లో x = 2, y = 3 పెడితే 2 + 3 = 5 ✓. కాబట్టి (2, 3) ఒక పరిష్కారం.",
+      "example_en": "Put x = 2, y = 3 in x + y = 5: 2 + 3 = 5 ✓. So (2, 3) is a solution.",
+      "keyTerm": "Linear equation in two variables"
+    },
+    {
+      "title": "ప్రతిక్షేపణ పద్ధతి",
+      "title_en": "Substitution method",
+      "lines": [
+        "ఒక సమీకరణం నుండి ఒక చరాన్ని మరో చరంతో వ్యక్తపరచండి.",
+        "ఆ విలువను రెండో సమీకరణంలో ప్రతిక్షేపించండి.",
+        "వచ్చిన ఒకే చరం సమీకరణాన్ని సాధించండి.",
+        "తర్వాత మిగిలిన చరం విలువను కనుగొనండి."
+      ],
+      "lines_en": [
+        "Express one variable in terms of the other using one equation.",
+        "Substitute that value into the second equation.",
+        "Solve the resulting equation in one variable.",
+        "Then find the value of the other variable."
+      ],
+      "example": "y = 2x, x + y = 9 → x + 2x = 9 → x = 3, y = 6.",
+      "example_en": "y = 2x, x + y = 9 → x + 2x = 9 → x = 3, y = 6.",
+      "keyTerm": "Substitution method"
+    },
+    {
+      "title": "సంగత మరియు అసంగత వ్యవస్థలు",
+      "title_en": "Consistent and inconsistent systems",
+      "lines": [
+        "కనీసం ఒక పరిష్కారం ఉంటే ఆ వ్యవస్థను సంగత వ్యవస్థ అంటారు.",
+        "ఏ పరిష్కారమూ లేకపోతే అసంగత వ్యవస్థ అంటారు.",
+        "a₁/a₂ ≠ b₁/b₂ అయితే ఒకే పరిష్కారం ఉంటుంది.",
+        "a₁/a₂ = b₁/b₂ ≠ c₁/c₂ అయితే పరిష్కారం ఉండదు."
+      ],
+      "lines_en": [
+        "If the system has at least one solution, it is called consistent.",
+        "If it has no solution at all, it is called inconsistent.",
+        "If a₁/a₂ ≠ b₁/b₂, there is exactly one solution.",
+        "If a₁/a₂ = b₁/b₂ ≠ c₁/c₂, there is no solution."
+      ],
+      "example": "2x + 3y = 7, 4x + 6y = 10: 2/4 = 3/6 ≠ 7/10 → అసంగత.",
+      "example_en": "2x + 3y = 7, 4x + 6y = 10: 2/4 = 3/6 ≠ 7/10 → inconsistent.",
+      "keyTerm": "Consistent / inconsistent system"
+    }
+  ],
+  "doubts": [
+    {
+      "id": "lin-solve",
+      "label": "పరిష్కారం",
+      "keywords": ["పరిష్కారం", "సాధించు", "సాధన", "solve", "ప్రతిక్షేపణ", "substitution", "జత", "x", "y"],
+      "answer": "ఒక చరాన్ని మరో చరంతో వ్యక్తపరచి రెండో సమీకరణంలో పెట్టండి. ఒకే చరం వచ్చాక దాన్ని సాధించండి. తర్వాత రెండో విలువ కనుగొనండి."
+    },
+    {
+      "id": "lin-consistent",
+      "label": "సంగత / అసంగత",
+      "keywords": ["సంగత", "అసంగత", "consistent", "inconsistent", "అనంత", "ఒకే", "పరిష్కారం లేదు", "నిష్పత్తి"],
+      "answer": "a₁/a₂ ≠ b₁/b₂ → ఒకే పరిష్కారం. a₁/a₂ = b₁/b₂ = c₁/c₂ → అనంత పరిష్కారాలు. a₁/a₂ = b₁/b₂ ≠ c₁/c₂ → పరిష్కారం లేదు."
+    }
+  ],
+  "questions": [
+    {
+      "id": "le-01",
+      "topic": "linear-equations",
+      "subtopic": "ఒకే పరిష్కారం",
+      "difficulty": 1,
+      "question": "x + y = 5 మరియు x − y = 1 అయితే x విలువ ఎంత?",
+      "question_en": "If x + y = 5 and x − y = 1, what is x?",
+      "options": ["1", "2", "3", "4"],
+      "options_en": ["1", "2", "3", "4"],
+      "correct": 2,
+      "mistake": "రెండు సమీకరణాలను కూడితే 2x = 6. కాబట్టి x = 3.",
+      "mistake_en": "Adding the two equations gives 2x = 6, so x = 3."
+    },
+    {
+      "id": "le-02",
+      "topic": "linear-equations",
+      "subtopic": "జత పరిష్కారం",
+      "difficulty": 1,
+      "question": "2x + y = 7 మరియు x − y = −1 యొక్క పరిష్కారం (x, y) ఏది?",
+      "question_en": "What is the solution (x, y) of 2x + y = 7 and x − y = −1?",
+      "options": ["(2, 3)", "(3, 2)", "(1, 5)", "(4, −1)"],
+      "options_en": ["(2, 3)", "(3, 2)", "(1, 5)", "(4, −1)"],
+      "correct": 0,
+      "mistake": "కూడితే 3x = 6, x = 2. అప్పుడు y = 3. తనిఖీ: 2×2 + 3 = 7 ✓.",
+      "mistake_en": "Adding gives 3x = 6, so x = 2. Then y = 3. Check: 2×2 + 3 = 7 ✓."
+    },
+    {
+      "id": "le-03",
+      "topic": "linear-equations",
+      "subtopic": "సంగత / అసంగత",
+      "difficulty": 1,
+      "question": "2x + 3y = 7 మరియు 4x + 6y = 10 ఈ వ్యవస్థ ఏది?",
+      "question_en": "What kind of system are 2x + 3y = 7 and 4x + 6y = 10?",
+      "options": ["సంగత వ్యవస్థ", "అసంగత వ్యవస్థ", "ఒకే పరిష్కారం మాత్రమే", "పరిష్కారాల సంఖ్య 5"],
+      "options_en": ["Consistent system", "Inconsistent system", "Only one solution", "Number of solutions is 5"],
+      "correct": 1,
+      "mistake": "2/4 = 3/6 = 1/2 కానీ 7/10 ≠ 1/2. నిష్పత్తులు సరిపోతాయి, స్థిరాంకాలు సరిపోవు → అసంగత.",
+      "mistake_en": "2/4 = 3/6 = 1/2, but 7/10 ≠ 1/2. The x and y ratios match but the constants do not → inconsistent."
+    },
+    {
+      "id": "le-04",
+      "topic": "linear-equations",
+      "subtopic": "అనంత పరిష్కారాలు",
+      "difficulty": 2,
+      "question": "x + 2y = 8 మరియు 2x + 4y = 16 వ్యవస్థకు ఎన్ని పరిష్కారాలు?",
+      "question_en": "How many solutions does the system x + 2y = 8 and 2x + 4y = 16 have?",
+      "options": ["ఒకే పరిష్కారం", "పరిష్కారం లేదు", "అనంత పరిష్కారాలు", "సున్న"],
+      "options_en": ["One solution", "No solution", "Infinitely many solutions", "Zero"],
+      "correct": 2,
+      "mistake": "రెండో సమీకరణం మొదటిదానికి రెండు రెట్లు. అంటే రెండూ ఒకే రేఖ, కాబట్టి అనంత పరిష్కారాలు.",
+      "mistake_en": "The second equation is twice the first. Both describe the same line, so there are infinitely many solutions."
+    },
+    {
+      "id": "le-05",
+      "topic": "linear-equations",
+      "subtopic": "ప్రతిక్షేపణ",
+      "difficulty": 2,
+      "question": "3x − y = 5 మరియు x + y = 3 అయితే (x, y) ఏది?",
+      "question_en": "If 3x − y = 5 and x + y = 3, what is (x, y)?",
+      "options": ["(2, 1)", "(1, 2)", "(3, 4)", "(4, 3)"],
+      "options_en": ["(2, 1)", "(1, 2)", "(3, 4)", "(4, 3)"],
+      "correct": 0,
+      "mistake": "కూడితే 4x = 8, x = 2. y = 3 − 2 = 1. తనిఖీ: 3×2 − 1 = 5 ✓.",
+      "mistake_en": "Adding gives 4x = 8, so x = 2. Then y = 3 − 2 = 1. Check: 3×2 − 1 = 5 ✓."
+    },
+    {
+      "id": "le-06",
+      "topic": "linear-equations",
+      "subtopic": "పద సమస్య",
+      "difficulty": 2,
+      "question": "ఒక పెన్ ధర x, ఒక పెన్సిల్ ధర y. 2x + 3y = 16 మరియు x + y = 6 అయితే x ఎంత?",
+      "question_en": "A pen costs x and a pencil costs y. If 2x + 3y = 16 and x + y = 6, what is x?",
+      "options": ["1", "2", "3", "4"],
+      "options_en": ["1", "2", "3", "4"],
+      "correct": 1,
+      "mistake": "y = 6 − x ను మొదటిలో పెడితే 2x + 18 − 3x = 16. కాబట్టి x = 2.",
+      "mistake_en": "Put y = 6 − x into the first equation: 2x + 18 − 3x = 16, so x = 2."
+    },
+    {
+      "id": "le-07",
+      "topic": "linear-equations",
+      "subtopic": "ప్రతిక్షేపణ",
+      "difficulty": 2,
+      "question": "y = 2x మరియు x + y = 9 అయితే x ఎంత?",
+      "question_en": "If y = 2x and x + y = 9, what is x?",
+      "options": ["2", "3", "4", "6"],
+      "options_en": ["2", "3", "4", "6"],
+      "correct": 1,
+      "mistake": "y ను స్థానంలో పెడితే x + 2x = 9. 3x = 9. కాబట్టి x = 3.",
+      "mistake_en": "Put y in place: x + 2x = 9. So 3x = 9, and x = 3."
+    },
+    {
+      "id": "le-08",
+      "topic": "linear-equations",
+      "subtopic": "సంగత / అసంగత",
+      "difficulty": 3,
+      "question": "2x − 3y = 4 మరియు 4x − 6y = 9 వ్యవస్థ ఏది?",
+      "question_en": "What kind of system are 2x − 3y = 4 and 4x − 6y = 9?",
+      "options": ["సంగత వ్యవస్థ", "అసంగత వ్యవస్థ", "అనంత పరిష్కారాలు ఉన్న సంగత వ్యవస్థ", "ఒకే పరిష్కారం"],
+      "options_en": ["Consistent system", "Inconsistent system", "Consistent system with infinitely many solutions", "One solution"],
+      "correct": 1,
+      "mistake": "a₁/a₂ = 2/4 = 1/2, b₁/b₂ = −3/−6 = 1/2, c₁/c₂ = 4/9. నిష్పత్తులు సమానం, c నిష్పత్తి వేరు → అసంగత.",
+      "mistake_en": "a₁/a₂ = 2/4 = 1/2, b₁/b₂ = −3/−6 = 1/2, c₁/c₂ = 4/9. The first two ratios are equal but the third differs → inconsistent."
+    },
+    {
+      "id": "le-09",
+      "topic": "linear-equations",
+      "subtopic": "అనంత పరిష్కారాలు",
+      "difficulty": 3,
+      "question": "x + 2y = 3 మరియు 2x + ky = 6 కు అనంత పరిష్కారాలు ఉండాలంటే k ఎంత?",
+      "question_en": "For x + 2y = 3 and 2x + ky = 6 to have infinitely many solutions, what is k?",
+      "options": ["2", "3", "4", "6"],
+      "options_en": ["2", "3", "4", "6"],
+      "correct": 2,
+      "mistake": "1/2 = 2/k = 3/6 కావాలి. 2/k = 1/2 అంటే k = 4.",
+      "mistake_en": "We need 1/2 = 2/k = 3/6. From 2/k = 1/2, k = 4."
+    },
+    {
+      "id": "le-10",
+      "topic": "linear-equations",
+      "subtopic": "పద సమస్య",
+      "difficulty": 3,
+      "question": "రెండు సంఖ్యల మొత్తం 50, భేదం 14. పెద్ద సంఖ్య ఎంత?",
+      "question_en": "The sum of two numbers is 50 and their difference is 14. What is the larger number?",
+      "options": ["32", "30", "36", "40"],
+      "options_en": ["32", "30", "36", "40"],
+      "correct": 0,
+      "mistake": "x + y = 50, x − y = 14. కూడితే 2x = 64, x = 32.",
+      "mistake_en": "x + y = 50, x − y = 14. Adding gives 2x = 64, so x = 32."
+    },
+    {
+      "id": "le-11",
+      "topic": "linear-equations",
+      "subtopic": "పద సమస్య",
+      "difficulty": 3,
+      "question": "దీర్ఘచతురస్రం చుట్టుకొలత 28, పొడవు − వెడల్పు = 2. పొడవు ఎంత?",
+      "question_en": "The perimeter of a rectangle is 28 and length − breadth = 2. What is the length?",
+      "options": ["6", "7", "8", "9"],
+      "options_en": ["6", "7", "8", "9"],
+      "correct": 2,
+      "mistake": "2(l + b) = 28, కాబట్టి l + b = 14. l − b = 2 తో కూడితే 2l = 16, l = 8.",
+      "mistake_en": "2(l + b) = 28, so l + b = 14. Adding l − b = 2 gives 2l = 16, so l = 8."
+    },
+    {
+      "id": "le-12",
+      "topic": "linear-equations",
+      "subtopic": "ఒకే పరిష్కారం",
+      "difficulty": 2,
+      "question": "x + y = 10 మరియు x − y = 4 అయితే y ఎంత?",
+      "question_en": "If x + y = 10 and x − y = 4, what is y?",
+      "options": ["2", "3", "6", "7"],
+      "options_en": ["2", "3", "6", "7"],
+      "correct": 1,
+      "mistake": "కూడితే 2x = 14, x = 7. y = 10 − 7 = 3.",
+      "mistake_en": "Adding gives 2x = 14, so x = 7. Then y = 10 − 7 = 3."
+    }
+  ]
+}

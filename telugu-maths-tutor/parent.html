@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>తల్లిదండ్రుల వీక్షణ / Parent View</title>
+<style>
+  body { font-family: "Nirmala UI", Gautami, Arial, sans-serif; margin: 0; background: #fff; color: #111; font-size: 20px; line-height: 1.4; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 28px; margin: 8px 0 4px; }
+  h2 { font-size: 26px; margin: 4px 0; }
+  .en { display: block; font-size: 15px; color: #333; }
+  input { width: 100%; box-sizing: border-box; font-size: 22px; padding: 14px; border: 3px solid #111; border-radius: 10px; min-height: 56px; }
+  button { width: 100%; min-height: 56px; margin-top: 12px; font-size: 22px; font-weight: bold; background: #0b3d91; color: #fff; border: none; border-radius: 10px; cursor: pointer; }
+  a.home { display: inline-block; min-height: 48px; line-height: 48px; padding: 0 16px; font-size: 20px; font-weight: bold; color: #0b3d91; }
+  .card { border: 2px solid #111; border-radius: 10px; padding: 14px; margin-top: 14px; }
+  .bar { background: #ddd; border-radius: 6px; height: 28px; overflow: hidden; margin: 6px 0 14px; }
+  .fill { height: 100%; color: #fff; font-weight: bold; font-size: 17px; line-height: 28px; text-align: right; padding-right: 8px; box-sizing: border-box; }
+  .ok { color: #0a6b25; font-weight: bold; }
+  .bad { color: #b00020; font-weight: bold; }
+  #err { color: #b00020; font-weight: bold; font-size: 22px; margin-top: 12px; }
+  li { margin: 8px 0; }
+</style>
+</head>
+<body>
+<main>
+  <a class="home" href="./index.html">⌂ హోమ్ / Home</a>
+  <h1>తల్లిదండ్రుల వీక్షణ <span class="en">Parent View</span></h1>
+
+  <input id="code" type="text" placeholder="కోడ్ / code" autocomplete="off" autocapitalize="off" spellcheck="false">
+  <button id="view">చూడండి / View</button>
+  <div id="err" role="alert"></div>
+
+  <section id="out" aria-live="polite"></section>
+</main>
+
+<script>
+const TOPICS = [
+  ["Real Numbers", "వాస్తవ సంఖ్యలు"],
+  ["Polynomials", "బహుపదులు"],
+  ["Linear Equations in Two Variables", "రెండు చరరాశులలో రేఖీయ సమీకరణాలు"]
+];
+const $ = id => document.getElementById(id);
+
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+function bilingual(parent, te, en, tag = "span") {
+  parent.appendChild(el(tag, "", te));
+  parent.appendChild(el("span", "en", en));
+  return parent;
+}
+
+function isValid(d) {
+  return d && typeof d === "object" && d.v === 1 && typeof d.nick === "string" &&
+    d.mastery && typeof d.mastery === "object" && Array.isArray(d.recent) &&
+    typeof d.streak === "number";
+}
+
+function decode(code) {
+  const i = code.lastIndexOf(".");
+  if (i < 1) return null;
+  const payload = code.slice(0, i);
+  const sum = code.slice(i + 1).trim().toLowerCase();
+  let check = 0;
+  for (let k = 0; k < payload.length; k++) check = (check + payload.charCodeAt(k)) % 65536;
+  if (check.toString(36).padStart(4, "0") !== sum) return null;
+  try {
+    let b64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+    while (b64.length % 4) b64 += "=";
+    const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+    const d = JSON.parse(new TextDecoder().decode(bytes));
+    return isValid(d) ? d : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function render(d) {
+  const out = $("out");
+  out.textContent = "";
+
+  const head = el("div", "card");
+  head.appendChild(el("h2", "", d.nick));
+  bilingual(head, "ధారావాహికత: " + d.streak + " రోజులు", "Streak: " + d.streak + " days", "div");
+  out.appendChild(head);
+
+  const mastery = el("div", "card");
+  bilingual(mastery, "అధ్యాయాల నైపుణ్యం", "Mastery by topic", "h2");
+  for (const [en, te] of TOPICS) {
+    const raw = Number(d.mastery[en]);
+    const pct = Math.max(0, Math.min(100, isNaN(raw) ? 0 : raw));
+    const label = el("div", "");
+    bilingual(label, te, en);
+    mastery.appendChild(label);
+    const bar = el("div", "bar");
+    const fill = el("div", "fill", pct + "%");
+    fill.style.width = pct + "%";
+    fill.style.background = pct >= 60 ? "#0a6b25" : "#b00020";
+    bar.appendChild(fill);
+    mastery.appendChild(bar);
+  }
+  out.appendChild(mastery);
+
+  const recent = el("div", "card");
+  bilingual(recent, "ఇటీవలి ప్రయత్నాలు", "Recent attempts", "h2");
+  const list = el("ul");
+  const items = d.recent.slice(-10).reverse();
+  if (items.length === 0) list.appendChild(el("li", "", "ఇంకా ప్రయత్నాలు లేవు / No attempts yet"));
+  for (const a of items) {
+    const li = el("li");
+    const t = TOPICS.find(x => x[0] === a.topic);
+    bilingual(li, t ? t[1] : String(a.topic), t ? t[0] : String(a.topic));
+    li.appendChild(document.createTextNode(" — "));
+    li.appendChild(a.ok
+      ? el("span", "ok", "సరైనది / Correct")
+      : el("span", "bad", "తప్పు / Wrong"));
+    const when = new Date(a.ts);
+    li.appendChild(document.createTextNode(" — " + (isNaN(when) ? "" : when.toLocaleString())));
+    list.appendChild(li);
+  }
+  recent.appendChild(list);
+  out.appendChild(recent);
+}
+
+function view() {
+  const code = $("code").value.trim();
+  const data = decode(code);
+  if (!data) {
+    $("out").textContent = "";
+    $("err").textContent = "Invalid code / చెల్లని కోడ్";
+    return;
+  }
+  $("err").textContent = "";
+  render(data);
+}
+
+$("view").addEventListener("click", view);
+$("code").addEventListener("keydown", e => { if (e.key === "Enter") view(); });
+</script>
+</body>
+</html>
