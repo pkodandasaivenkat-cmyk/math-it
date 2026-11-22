@@ -804,6 +804,11 @@ function profileForm(existing) {
 
 async function init() {
   applyTheme(currentTheme());
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {
+      // The app remains usable if offline caching is unavailable.
+    });
+  }
   try {
     await openDB();
     state.profile = (await get('profiles', 'active')) || null;

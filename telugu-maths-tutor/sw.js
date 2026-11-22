@@ -1,5 +1,5 @@
 // sw.js - service worker for గణితం
-const CACHE = 'tmt-v11';
+const CACHE = 'tmt-v12';
 const ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,8 @@ const ASSETS = [
   './parent.html',
   './manifest.webmanifest',
   './icons/icon.svg',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
   './content/real-numbers.json',
   './content/polynomials.json',
   './content/linear-equations.json'

@@ -10,7 +10,7 @@ Math It is a Class 10 Maths practice app in Telugu and English, made for Telugu-
 
 ## Install as an app (PWA)
 
-1. On an Android phone, open Chrome and go to https://pkodandasaivenkat-cmyk.github.io/math-it/telugu-maths-tutor/
+1. On an Android phone, open Chrome and go to https://pkodandasaivenkat-cmyk.github.io/math-it/
 2. Open the Chrome menu and choose **Install app** or **Add to Home screen**.
 3. After the first visit, the app works offline.
 
@@ -25,7 +25,7 @@ Math It is a Class 10 Maths practice app in Telugu and English, made for Telugu-
 
 ## Offline and data
 
-- The service worker caches the app shell and the content. The cache name is set in `sw.js` (currently `tmt-v11`).
+- The service worker caches the app shell and the content. The cache name is set in `sw.js` (currently `tmt-v12`).
 - Progress is saved in IndexedDB on the phone. Nothing is sent to a server.
 - No videos, no CDN and no external fonts. The app uses system fonts only.
 
@@ -51,7 +51,3 @@ Math It is a Class 10 Maths practice app in Telugu and English, made for Telugu-
 - `icons/icon.svg` – app icon
 - `content/*.json` – lesson and question content
 - `parent.html` – read-only parent view
-
-## Known gaps
-
-- The PNG icons `icons/icon-192.png` and `icons/icon-512.png` are not yet included. The manifest references them, so Android may show a generic icon until they are added.
