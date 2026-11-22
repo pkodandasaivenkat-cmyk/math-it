@@ -1,4 +1,4 @@
-// app.js - Telugu Maths Tutor (plain ES module, no libraries)
+// app.js - గణితం (plain ES module, no libraries)
 import { openDB, put, get, getAll, clearStore } from './db.js';
 
 const CONTENT_FILES = [
@@ -8,6 +8,7 @@ const CONTENT_FILES = [
 ];
 const AVATARS = ['🐯', '🦁', '🐼', '🐸', '🦊', '🐵', '🐰', '🐧'];
 const DEFAULT_DIFFICULTY = 1;
+
 
 const DOUBT_KEYWORDS = [
   {
@@ -89,25 +90,89 @@ function go(hash) {
   else location.hash = hash;
 }
 
-function navBar() {
-  return el('nav', { class: 'nav-bar' },
-    el('button', { class: 'btn-small', on: { click: () => history.back() } }, '← వెనక్కి / Back'),
-    el('button', { class: 'btn-small', on: { click: () => go('#/home') } }, '🏠 హోమ్ / Home'));
+// ---------- app shell: top bar, bottom tabs ----------
+
+const SVG_OPEN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+  'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">';
+const TABS = [
+  {
+    label: 'సాధన', go: '#/practice', routes: ['practice'],
+    icon: SVG_OPEN + '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>' +
+      '<rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>',
+  },
+  {
+    label: 'నేర్చుకోండి', go: '#/learn', routes: ['learn'],
+    icon: SVG_OPEN + '<path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg>',
+  },
+  {
+    label: 'అడగండి', go: '#/home', routes: ['home', 'doubt'],
+    icon: SVG_OPEN + '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>',
+  },
+  {
+    label: 'పురోగతి', go: '#/progress', routes: ['progress'],
+    icon: SVG_OPEN + '<path d="M5 20v-7"/><path d="M12 20V5"/><path d="M19 20v-10"/></svg>',
+  },
+];
+
+const TAB_SCREENS = ['home', 'learn', 'practice', 'doubt', 'progress'];
+
+function appTop(route) {
+  const isTab = TAB_SCREENS.includes(route.name) && !route.arg;
+  const logo = el('span', { class: 'app-logo', 'aria-hidden': 'true' });
+  logo.innerHTML = '<svg viewBox="0 0 28 28" width="28" height="28" focusable="false">' +
+    '<rect width="28" height="28" rx="6" fill="#FACC15"/>' +
+    '<path d="M7 20V8l7 9 7-9v12" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>' +
+    '</svg>';
+  return el('header', { class: 'app-top' },
+    isTab ? null : el('button', {
+      class: 'back-btn',
+      'aria-label': 'Back',
+      on: { click: () => history.back() },
+    }, '←'),
+    el('div', { class: 'app-brand' },
+      logo,
+      el('div', null,
+        el('span', { class: 'app-name' }, 'మ్యాత్ ఇట్'),
+        el('span', { class: 'app-sub' }, 'గణిత మిత్రుడు'))));
+
 }
 
-function speak(text, lang = 'te-IN') {
+function appBottom(route) {
+  return el('nav', { class: 'app-bottom' },
+    TABS.map((t) => {
+      const icon = el('span', { class: 'tab-icon', 'aria-hidden': 'true' });
+      icon.innerHTML = t.icon;
+      return el('button', {
+        class: 'tab' + (t.routes.includes(route.name) ? ' active' : ''),
+        on: { click: () => go(t.go) },
+      }, icon, el('span', { class: 'tab-label' }, t.label));
+    }));
+}
+
+function mountShell(route) {
+  const top = appTop(route);
+  const bottom = appBottom(route);
+  const oldTop = document.querySelector('.app-top');
+  const oldBottom = document.querySelector('.app-bottom');
+  if (oldTop) oldTop.replaceWith(top);
+  else document.body.prepend(top);
+  if (oldBottom) oldBottom.replaceWith(bottom);
+  else document.body.append(bottom);
+}
+
+// Reads Telugu text aloud; does nothing when the browser has no speech synthesis.
+function speakTelugu(text) {
   if (!('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = lang;
+  u.lang = 'te-IN';
+  u.rate = 0.95;
   speechSynthesis.speak(u);
 }
 
-function speakButton(text, lang) {
-  if (!('speechSynthesis' in window)) return null;
+function speakButton(text) {
   return el('button', {
-    class: 'speak', 'aria-label': 'Read aloud',
-    on: { click: (e) => { e.stopPropagation(); speak(text, lang); } },
+    class: 'speak-btn', 'aria-label': 'Listen',
+    on: { click: (e) => { e.stopPropagation(); speakTelugu(text); } },
   }, '🔊');
 }
 
@@ -122,19 +187,97 @@ function findChapter(id) {
 }
 
 function notFound() {
-  return el('section', { class: 'screen' }, navBar(),
-    el('p', null, 'పేజీ కనుగొనబడలేదు / Page not found'));
+  return el('section', { class: 'screen' },
+    el('p', null, 'Page not found'));
 }
 
+// crypto.subtle is missing on phones opening the app over plain http on the LAN, so fall back to pure JS SHA-256.
 async function sha256Hex(text) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
-  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+  const bytes = new TextEncoder().encode(text);
+  if (window.crypto && crypto.subtle) {
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+  }
+  return sha256Pure(bytes);
+}
+
+// SHA-256 per FIPS 180-4, used only when crypto.subtle is unavailable. Returns lowercase hex.
+const SHA256_K = [
+  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+  0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+  0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+  0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+  0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+  0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+  0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+  0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+];
+
+function rotr32(x, n) {
+  return (x >>> n) | (x << (32 - n));
+}
+
+function sha256Pure(bytes) {
+  const H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+  const bitLen = bytes.length * 8;
+  const padded = new Uint8Array(((bytes.length + 9 + 63) >> 6) << 6);
+  padded.set(bytes);
+  padded[bytes.length] = 0x80;
+  const dv = new DataView(padded.buffer);
+  dv.setUint32(padded.length - 8, Math.floor(bitLen / 0x100000000));
+  dv.setUint32(padded.length - 4, bitLen >>> 0);
+  const W = new Uint32Array(64);
+  for (let off = 0; off < padded.length; off += 64) {
+    for (let t = 0; t < 16; t++) W[t] = dv.getUint32(off + t * 4);
+    for (let t = 16; t < 64; t++) {
+      const x = W[t - 15];
+      const y = W[t - 2];
+      const s0 = rotr32(x, 7) ^ rotr32(x, 18) ^ (x >>> 3);
+      const s1 = rotr32(y, 17) ^ rotr32(y, 19) ^ (y >>> 10);
+      W[t] = (W[t - 16] + s0 + W[t - 7] + s1) >>> 0;
+    }
+    let [a, b, c, d, e, f, g, h] = H;
+    for (let t = 0; t < 64; t++) {
+      const S1 = rotr32(e, 6) ^ rotr32(e, 11) ^ rotr32(e, 25);
+      const ch = (e & f) ^ (~e & g);
+      const t1 = (h + S1 + ch + SHA256_K[t] + W[t]) >>> 0;
+      const S0 = rotr32(a, 2) ^ rotr32(a, 13) ^ rotr32(a, 22);
+      const maj = (a & b) ^ (a & c) ^ (b & c);
+      const t2 = (S0 + maj) >>> 0;
+      h = g; g = f; f = e;
+      e = (d + t1) >>> 0;
+      d = c; c = b; b = a;
+      a = (t1 + t2) >>> 0;
+    }
+    const v = [a, b, c, d, e, f, g, h];
+    for (let i = 0; i < 8; i++) H[i] = (H[i] + v[i]) >>> 0;
+  }
+  return H.map((v) => v.toString(16).padStart(8, '0')).join('');
 }
 
 function randomHex(bytes) {
   const arr = new Uint8Array(bytes);
   crypto.getRandomValues(arr);
   return Array.from(arr).map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+// ---------- theme ----------
+
+const THEME_KEY = 'tmt-theme';
+const THEME_NEXT = { auto: 'dark', dark: 'light', light: 'auto' };
+const THEME_LABEL = { light: 'Theme: Dark', dark: 'Theme: Light', auto: 'Theme: Auto' };
+
+function currentTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  return THEME_NEXT[saved] ? saved : 'auto';
+}
+
+// choice: 'dark' | 'light' | 'auto' (auto removes the attribute so the phone setting applies)
+function applyTheme(choice) {
+  const theme = THEME_NEXT[choice] ? choice : 'auto';
+  if (theme === 'auto') delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = theme;
+  localStorage.setItem(THEME_KEY, theme);
 }
 
 // ---------- content ----------
@@ -218,7 +361,7 @@ function parseRoute() {
 async function render() {
   const token = ++renderToken;
   if (!state.chapters.length) {
-    appEl.replaceChildren(el('p', { class: 'loading' }, 'లోడ్ అవుతోంది... / Loading...'));
+    appEl.replaceChildren(el('p', { class: 'loading' }, 'Loading...'));
     return;
   }
   const route = parseRoute();
@@ -230,92 +373,60 @@ async function render() {
   switch (route.name) {
     case 'learn': view = viewLearn(route.arg); break;
     case 'practice': view = await viewPractice(route.arg); break;
-    case 'doubt': view = viewDoubt(); break;
+    case 'doubt': view = renderAsk(); break;
     case 'progress': view = await viewProgress(); break;
     case 'profile': view = viewProfile(); break;
-    case 'home': view = viewHome(); break;
+    case 'home': view = renderAsk(); break;
     default: view = notFound();
   }
   if (token !== renderToken) return;
+  mountShell(route);
   appEl.replaceChildren(view);
 }
 
 // ---------- home ----------
+// Home renders the shared renderAsk() hero (see the doubt section below).
 
-function viewHome() {
-  const items = [
-    { te: 'పాఠం', en: 'Learn', icon: '📖', go: '#/learn' },
-    { te: 'అభ్యాసం', en: 'Practice', icon: '✏️', go: '#/practice' },
-    { te: 'సందేహం', en: 'Ask a Doubt', icon: '❓', go: '#/doubt' },
-    { te: 'పురోగతి', en: 'My Progress', icon: '📊', go: '#/progress' },
-  ];
-  return el('section', { class: 'screen' },
-    el('div', { class: 'who' }, `${state.profile.avatar} ${state.profile.nick}`),
-    el('div', { class: 'home-grid' },
-      items.map((it) => el('div', { class: 'big-wrap' },
-        el('button', {
-          class: 'big-btn',
-          on: { click: () => go(it.go) },
-        }, el('span', { class: 'icon' }, it.icon),
-          el('span', { class: 'te' }, it.te),
-          el('span', { class: 'en' }, it.en)),
-        speakButton(it.te, 'te-IN')))),
-    el('button', {
-      class: 'btn switch',
-      on: { click: () => { state.unlocked = false; go('#/profile'); } },
-    }, 'ప్రొఫైల్ మార్చు / Switch profile'));
-}
 
 // ---------- learn ----------
 
 function chapterPicker(kind) {
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, kind === 'learn'
-      ? 'పాఠం ఎంచుకోండి / Choose a chapter'
-      : 'అభ్యాసం ఎంచుకోండి / Choose a chapter'),
-    state.chapters.map((ch) => el('button', {
-      class: 'chapter-btn',
-      on: { click: () => go(`#/${kind}/${ch.id}`) },
-    }, ch.title, el('span', { class: 'en' }, ' / ' + ch.title_en))));
+  return el('section', { class: 'screen' },
+    el('h2', null, 'అధ్యాయాన్ని ఎంచుకోండి'),
+    el('div', { class: 'chapter-list' },
+      state.chapters.map((ch) => el('button', {
+        class: 'btn btn-secondary chapter-btn',
+        on: { click: () => go(`#/${kind}/${ch.id}`) },
+      }, ch.title))));
 }
+
 
 function viewLearn(chapterId) {
   if (!chapterId) return chapterPicker('learn');
   const ch = findChapter(chapterId);
   if (!ch || !ch.lessons.length) return notFound();
+  localStorage.setItem('tmt-last', ch.id);
   const idx = state.lessonIndex[ch.id] || 0;
   const lesson = ch.lessons[idx];
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, ch.title, ' / ', ch.title_en),
+  return el('section', { class: 'screen' },
+    el('div', { class: 'counter' }, `Lesson ${idx + 1} of ${ch.lessons.length}`),
     el('div', { class: 'card' },
-      el('p', { class: 'counter' }, `పాఠం ${idx + 1} / ${ch.lessons.length}`,
-        ` · Lesson ${idx + 1} of ${ch.lessons.length}`),
-      el('h3', null, lesson.title, ' / ', lesson.title_en),
-      lesson.lines.map((t, i) => el('div', { class: 'line' },
-        el('div', { class: 'te' }, t),
-        el('div', { class: 'en' }, (lesson.lines_en || [])[i] || ''))),
-      el('div', { class: 'example' },
-        el('div', { class: 'te' }, lesson.example),
-        el('div', { class: 'en' }, lesson.example_en)),
-      el('p', { class: 'keyterm' }, 'Key term: ', lesson.keyTerm),
-      el('button', {
-        class: 'btn',
-        on: { click: () => speak(lesson.lines.join(' ')) },
-      }, '🔊 చదివి వినిపించు / Read aloud')),
-    el('div', { class: 'row' },
-      el('button', {
-        class: 'btn', disabled: idx === 0,
-        on: { click: () => { state.lessonIndex[ch.id] = idx - 1; render(); } },
-      }, '◀ మునుపటి / Prev'),
-      el('button', {
-        class: 'btn', disabled: idx >= ch.lessons.length - 1,
-        on: { click: () => { state.lessonIndex[ch.id] = idx + 1; render(); } },
-      }, 'తదుపరి / Next ▶')),
+      el('h2', { class: 'te' }, lesson.title),
+      speakButton(lesson.lines.join('\n')),
+      lesson.lines.map((t) => el('p', { class: 'te' }, t)),
+      el('div', { class: 'card' },
+        el('p', { class: 'te' }, lesson.example)),
+      el('p', null, 'Key term: ', lesson.keyTerm)),
     el('button', {
-      class: 'btn primary',
-      on: { click: () => go(`#/practice/${ch.id}`) },
-    }, 'అభ్యాసం / Practice'));
+      class: 'btn btn-primary', disabled: idx >= ch.lessons.length - 1,
+      on: { click: () => { state.lessonIndex[ch.id] = idx + 1; render(); } },
+    }, 'Next'),
+    el('button', {
+      class: 'btn btn-secondary', disabled: idx === 0,
+      on: { click: () => { state.lessonIndex[ch.id] = idx - 1; render(); } },
+    }, 'Previous'));
 }
+
 
 // ---------- practice ----------
 
@@ -323,6 +434,7 @@ async function viewPractice(chapterId) {
   if (!chapterId) return chapterPicker('practice');
   const ch = findChapter(chapterId);
   if (!ch || !ch.questions.length) return notFound();
+  localStorage.setItem('tmt-last', ch.id);
   if (!state.practice || state.practice.chapterId !== ch.id) {
     state.practice = { chapterId: ch.id, question: null, answered: null, lastId: null, stats: null };
   }
@@ -331,13 +443,14 @@ async function viewPractice(chapterId) {
     p.stats = await loadStats(topicKey(ch));
     p.question = pickQuestion(ch, p.stats, p.lastId);
     p.answered = null;
+    p.n = (p.n || 0) % 10 + 1;
   }
   const q = p.question;
   const ans = p.answered;
   const hintMode = (p.stats.consecutiveWrong || 0) >= 2;
 
   const options = q.options.map((opt, i) => {
-    let cls = 'option';
+    let cls = 'btn-answer';
     if (ans) {
       if (i === ans.choice) cls += ans.ok ? ' correct' : ' wrong';
       else if (!ans.ok && i === q.correct) cls += ' correct';
@@ -346,31 +459,27 @@ async function viewPractice(chapterId) {
       class: cls,
       disabled: !!ans,
       on: { click: () => answer(i) },
-    }, el('div', { class: 'te' }, opt), el('div', { class: 'en' }, q.options_en[i]));
+    }, el('div', { class: 'te' }, opt));
   });
 
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, ch.title, ' / ', ch.title_en),
-    el('p', { class: 'counter' }, `స్థాయి / Level ${q.difficulty}`),
-    el('div', { class: 'card question' },
-      el('div', { class: 'te big' }, q.question),
-      el('div', { class: 'en' }, q.question_en),
-      speakButton(q.question, 'te-IN')),
+  return el('section', { class: 'screen' },
+    el('div', { class: 'progress-track' },
+      el('div', { class: 'progress-fill', style: `width: ${(p.n / 10) * 100}%` })),
+    el('div', { class: 'counter' }, `Question ${p.n} of 10`),
+    el('div', { class: 'card' },
+      el('p', { class: 'te' }, q.question, speakButton(q.question))),
     hintMode ? el('div', { class: 'hint' },
-      el('div', { class: 'te' }, 'సూచన: ', q.mistake),
-      el('div', { class: 'en' }, 'Hint: ', q.mistake_en)) : null,
+      'Hint: ', el('span', { class: 'te' }, q.mistake)) : null,
     el('div', { class: 'options' }, options),
-    ans ? el('div', { class: ans.ok ? 'feedback correct' : 'feedback wrong' },
-      el('div', { class: 'te big' }, ans.ok ? 'సరైనది' : 'తప్పు'),
-      el('div', { class: 'en' }, ans.ok ? 'Correct' : 'Wrong')) : null,
-    ans && !ans.ok ? el('div', { class: 'mistake' },
-      el('div', { class: 'te' }, q.mistake),
-      el('div', { class: 'en' }, q.mistake_en)) : null,
+    ans ? el('div', { class: 'notice' },
+      el('p', null, ans.ok ? 'Correct!' : 'Wrong'),
+      ans.ok ? null : el('p', { class: 'te' }, q.mistake)) : null,
     ans ? el('button', {
-      class: 'btn primary',
+      class: 'btn btn-primary',
       on: { click: nextQuestion },
-    }, 'తదుపరి / Next ▶') : null);
+    }, 'Next') : null);
 }
+
 
 async function answer(choice) {
   const p = state.practice;
@@ -405,77 +514,90 @@ function explainFor(text) {
 
 function explanationCard(hit) {
   const ch = findChapter(hit.chapter);
-  return el('div', { class: 'card explain' },
-    el('div', { class: 'te' }, hit.te),
-    el('div', { class: 'en' }, hit.en),
+  return el('div', { class: 'notice' },
+    el('p', { class: 'te' }, hit.te),
     ch ? el('button', {
-      class: 'btn',
+      class: 'btn btn-secondary',
       on: { click: () => go(`#/learn/${ch.id}`) },
-    }, `${ch.title} / ${ch.title_en} — పాఠం / Learn`) : null);
+    }, `Open lesson: ${ch.title_en}`) : null);
 }
 
-function chapterSummary(ch) {
-  return el('div', { class: 'card explain' },
-    el('div', { class: 'te' }, ch.title),
-    el('div', { class: 'en' }, ch.title_en),
-    ch.lessons.map((l) => el('div', { class: 'line' },
-      el('div', { class: 'te' }, l.title),
-      el('div', { class: 'en' }, l.title_en),
-      el('div', { class: 'en' }, 'Key term: ', l.keyTerm))));
-}
-
-function viewDoubt() {
+// Shared Home and Ask screen: hero, then the doubt card (offline keyword answers).
+function renderAsk() {
   const out = el('div', { class: 'answer-box' });
-  const transcript = el('div', { class: 'transcript' });
+  const doubtText = el('textarea', {
+    class: 'ask-input', rows: 3, placeholder: 'మీ ప్రశ్న రాయండి... 2x + 5 = 17',
+    on: { input: (e) => showFor(e.target.value) },
+  });
+
+  const showAnswer = (hit) => out.replaceChildren(hit ? explanationCard(hit)
+    : el('p', null, 'Sorry, I could not find an answer. Try another word.'));
 
   const showFor = (text) => {
-    transcript.replaceChildren(text ? el('div', { class: 'te' }, text) : el('div', { class: 'en' }, ''));
-    const hit = explainFor(text);
-    out.replaceChildren(hit ? explanationCard(hit)
-      : el('p', null, 'క్షమించండి, అర్థం కాలేదు / Sorry, no explanation found. Try a chapter below.'));
+    if (!text || !text.trim()) { out.replaceChildren(); return; }
+    doubtText.value = text;
+    showAnswer(explainFor(text));
   };
 
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const micBtn = SR ? el('button', {
-    class: 'btn big-mic',
+  const micBtn = el('button', {
+    class: 'round-btn mic-btn',
+    'aria-label': 'మాట్లాడండి',
+    disabled: !SR,
     on: {
       click: () => {
         const rec = new SR();
         rec.lang = 'te-IN';
         rec.onresult = (e) => showFor(e.results[0][0].transcript);
-        rec.onerror = () => out.replaceChildren(el('p', null, 'మైక్ పని చేయలేదు / Microphone failed'));
+        rec.onerror = () => out.replaceChildren(el('p', null, 'Microphone failed'));
         rec.start();
       },
     },
-  }, '🎤 మాట్లాడండి / Speak') : null;
+  }, '🎤');
+  const micNote = el('div', { class: 'notice' },
+    el('p', null, 'Microphone is not available on this phone.'));
+  micNote.hidden = !!SR;
 
   const preview = el('img', { class: 'preview', alt: 'Photo preview', style: 'display:none' });
+  const fileName = el('span', { class: 'file-name' }, 'ఫైల్ ఎంచుకోలేదు');
   const camInput = el('input', {
-    type: 'file', accept: 'image/*', capture: 'environment',
+    type: 'file', accept: 'image/*', capture: 'environment', class: 'file-input',
     on: {
       change: (e) => {
         const f = e.target.files && e.target.files[0];
         if (!f) return;
+        fileName.textContent = f.name;
         preview.src = URL.createObjectURL(f);
         preview.style.display = 'block';
       },
     },
   });
 
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, 'సందేహం / Ask a Doubt'),
-    el('div', { class: 'row' },
-      micBtn,
-      el('label', { class: 'btn' }, '📷 ఫోటో / Photo', camInput)),
-    preview,
-    transcript,
-    out,
-    el('h3', null, 'అధ్యాయాలు / Chapters'),
-    el('div', { class: 'chips' }, state.chapters.map((ch) => el('button', {
-      class: 'chip',
-      on: { click: () => out.replaceChildren(chapterSummary(ch)) },
-    }, ch.title, ' / ', ch.title_en))));
+  const sendBtn = el('button', {
+    class: 'send-btn',
+    'aria-label': 'పంపండి',
+    on: { click: () => showFor(doubtText.value) },
+  }, '↑');
+
+  return el('section', { class: 'screen' },
+    el('div', { class: 'hero' },
+      el('div', { class: 'hero-logo' }, '∑'),
+      el('p', { class: 'hero-kicker' }, 'మీ భాషలో. మీ వేగంతో.'),
+      el('h1', { class: 'hero-title' }, 'గణితం, సులభంగా.'),
+      el('p', { class: 'hero-sub' }, 'మీ సందేహం రాయండి. కలిసి ఒక్కో మెట్టు నేర్చుకుందాం.')),
+    el('div', { class: 'ask-card' },
+      doubtText,
+      el('div', { class: 'ask-foot' },
+        el('label', { class: 'file-btn' }, el('span', null, '📷 ఫోటో ఎంచుకోండి'), camInput),
+        fileName,
+        micBtn,
+        sendBtn),
+      preview),
+    micNote,
+    out);
+
 }
+
 
 // ---------- progress ----------
 
@@ -487,16 +609,16 @@ async function viewProgress() {
   const rows = state.chapters.map((ch) => {
     const st = statsAll.find((s) => s.topic === topicKey(ch));
     const m = masteryPercent(st);
-    return el('div', { class: 'progress-row' },
-      el('div', { class: 'te' }, ch.title),
-      el('div', { class: 'en' }, ch.title_en),
-      el('div', { class: 'bar' },
-        el('div', { class: m >= 60 ? 'bar-fill good' : 'bar-fill weak', style: `width:${m}%` })),
-      el('div', null, `${m}%`));
+    return el('div', { class: 'card' },
+      el('p', null, ch.title_en),
+      el('div', { class: 'bar-row' },
+        el('div', { class: 'bar-label' }, `${m}%`),
+        el('div', { class: 'bar-track' },
+          el('div', { class: m >= 60 ? 'bar-fill good' : 'bar-fill weak', style: `width: ${m}%` }))));
   });
   const codeBox = el('textarea', { class: 'share-code', readonly: true, rows: 4 });
   const shareBtn = el('button', {
-    class: 'btn primary',
+    class: 'btn btn-secondary',
     on: {
       click: () => {
         const recent = attempts
@@ -519,20 +641,34 @@ async function viewProgress() {
         note.hidden = false;
       },
     },
-  }, 'తెలియజేయి / Share');
-  const note = el('p', { class: 'note' },
-    'ఇది ఆఫ్‌లైన్ ఎన్‌కోడింగ్; కోడ్‌లో పురోగతి సమాచారం స్వయంగా ఉంటుంది. ',
-    'This is an offline encoding; the code carries the progress snapshot itself.');
+  }, 'Share');
+  const note = el('p', { class: 'note' }, 'Show this code to your parent or teacher.');
   note.hidden = true;
 
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, 'పురోగతి / My Progress'),
-    el('p', null, `🔥 రోజులు / Streak: ${streak} ${streak === 1 ? 'day' : 'days'}`),
+  return el('section', { class: 'screen' },
+    el('h2', null, 'My Progress'),
+    el('span', { class: 'streak-badge' }, `🔥 ${streak} days`),
     rows,
     shareBtn,
     codeBox,
-    note);
+    note,
+    settingsCard());
 }
+
+// theme cycle and profile switch; switch relocks so the PIN is asked again
+function settingsCard() {
+  return el('div', { class: 'card' },
+    el('p', null, 'Settings'),
+    el('button', {
+      class: 'btn btn-secondary',
+      on: { click: () => { applyTheme(THEME_NEXT[currentTheme()]); render(); } },
+    }, THEME_LABEL[currentTheme()]),
+    el('button', {
+      class: 'btn btn-secondary',
+      on: { click: () => { state.unlocked = false; go('#/profile'); } },
+    }, 'Switch profile'));
+}
+
 
 // consecutive dates with an answer, counting back from today (or yesterday if today is empty)
 function computeStreak(dateIds) {
@@ -569,7 +705,8 @@ function viewProfile() {
 function pinGate() {
   const msg = el('p', { class: 'error' });
   const pinInput = el('input', {
-    type: 'password', inputmode: 'numeric', maxlength: 4, placeholder: 'PIN (4 అంకెలు / 4 digits)',
+    class: 'pin-input', type: 'password', inputmode: 'numeric', maxlength: 4, pattern: '[0-9]{4}',
+    placeholder: '••••',
   });
   const submit = async () => {
     const pin = pinInput.value.trim();
@@ -578,25 +715,32 @@ function pinGate() {
       state.unlocked = true;
       render();
     } else {
-      msg.textContent = 'PIN తప్పు / Wrong PIN';
+      msg.textContent = 'Wrong PIN. Try again.';
     }
   };
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, 'PIN నిర్ధారించండి / Confirm PIN'),
-    pinInput,
-    el('button', { class: 'btn primary', on: { click: submit } }, 'సరే / OK'),
-    msg);
+  return el('section', { class: 'screen' },
+    el('div', { class: 'big-card' },
+      el('h2', null, 'Confirm PIN'),
+      el('div', { class: 'form-field' },
+        el('label', { class: 'label' }, 'Enter your 4-digit PIN'),
+        pinInput),
+      el('button', {
+        class: 'btn btn-primary', type: 'button', style: 'width:100%', on: { click: submit },
+      }, 'Unlock'),
+      msg));
 }
 
 function profileForm(existing) {
   const msg = el('p', { class: 'error' });
   const nickInput = el('input', {
-    type: 'text', maxlength: 20, placeholder: 'పేరు / Nickname',
+    class: 'input', type: 'text', maxlength: 20, required: true,
+    placeholder: 'e.g. Ravi',
     value: existing ? existing.nick : '',
   });
   let avatar = existing ? existing.avatar : AVATARS[0];
   const avatarBtns = AVATARS.map((a) => el('button', {
-    class: 'avatar' + (a === avatar ? ' selected' : ''),
+    class: 'avatar-opt' + (a === avatar ? ' selected' : ''),
+    type: 'button',
     on: {
       click: () => {
         avatar = a;
@@ -605,57 +749,67 @@ function profileForm(existing) {
     },
   }, a));
   const pinInput = el('input', {
-    type: 'password', inputmode: 'numeric', maxlength: 4, placeholder: existing ? 'PIN మార్చకపోతే ఖాళీ / leave blank' : 'PIN (4 అంకెలు / 4 digits)',
+    class: 'pin-input', type: 'password', inputmode: 'numeric', maxlength: 4, pattern: '[0-9]{4}',
+    placeholder: existing ? 'leave blank to keep' : '••••',
   });
 
   const save = async () => {
-    const nick = nickInput.value.trim();
-    if (!nick) { msg.textContent = 'పేరు ఇవ్వండి / Enter a nickname'; return; }
-    const pin = pinInput.value.trim();
-    if (!existing && !/^\d{4}$/.test(pin)) {
-      msg.textContent = '4 అంకెల PIN ఇవ్వండి / Enter a 4-digit PIN';
-      return;
-    }
-    if (existing && pin && !/^\d{4}$/.test(pin)) {
-      msg.textContent = '4 అంకెల PIN ఇవ్వండి / Enter a 4-digit PIN';
-      return;
-    }
-    let rec;
-    if (!existing) {
-      const salt = randomHex(16);
-      rec = { id: 'active', nick, avatar, salt, pinHash: await sha256Hex(salt + ':' + pin) };
-    } else {
-      rec = { ...existing, nick, avatar };
-      if (pin) {
+    try {
+      const nick = nickInput.value.trim();
+      if (!nick) { msg.textContent = 'Please enter a nickname.'; return; }
+      const pin = pinInput.value.trim();
+      if (!existing && !pin) { msg.textContent = 'Please enter a 4-digit PIN.'; return; }
+      if (pin && !/^\d{4}$/.test(pin)) { msg.textContent = 'PIN must be exactly 4 digits.'; return; }
+      let rec;
+      if (!existing) {
         const salt = randomHex(16);
-        rec.salt = salt;
-        rec.pinHash = await sha256Hex(salt + ':' + pin);
+        rec = { id: 'active', nick, avatar, salt, pinHash: await sha256Hex(salt + ':' + pin) };
+      } else {
+        rec = { ...existing, nick, avatar };
+        if (pin) {
+          const salt = randomHex(16);
+          rec.salt = salt;
+          rec.pinHash = await sha256Hex(salt + ':' + pin);
+        }
       }
+      await put('profiles', rec);
+      state.profile = rec;
+      state.unlocked = true;
+      go('#/home');
+    } catch (err) {
+      msg.replaceChildren('Could not save. Please try again.', el('small', null, ' ' + err.message));
     }
-    await put('profiles', rec);
-    state.profile = rec;
-    state.unlocked = true;
-    go('#/home');
   };
 
-  return el('section', { class: 'screen' }, navBar(),
-    el('h2', null, existing ? 'ప్రొఫైల్ / Profile' : 'కొత్త ప్రొఫైల్ / Create profile'),
-    el('label', null, 'పేరు / Nickname', nickInput),
-    el('div', { class: 'avatars' }, avatarBtns),
-    el('label', null, 'PIN', pinInput),
-    el('button', { class: 'btn primary', on: { click: save } }, 'సేవ్ / Save'),
-    msg);
+  return el('section', { class: 'screen' },
+    el('div', { class: 'big-card' },
+      el('h2', null, existing ? 'Profile' : 'Create your profile'),
+      existing ? null : el('p', { class: 'note' }, 'Only a nickname and a PIN. No phone or email.'),
+      el('div', { class: 'form-field' },
+        el('label', { class: 'label' }, 'Nickname'),
+        nickInput),
+      el('div', { class: 'form-field' },
+        el('span', { class: 'label' }, 'Choose an avatar'),
+        el('div', { class: 'avatar-grid' }, avatarBtns)),
+      el('div', { class: 'form-field' },
+        el('label', { class: 'label' }, '4-digit PIN'),
+        pinInput),
+      el('button', {
+        class: 'btn btn-primary', type: 'button', style: 'width:100%', on: { click: save },
+      }, 'Save and continue'),
+      msg));
 }
 
 // ---------- startup ----------
 
 async function init() {
+  applyTheme(currentTheme());
   try {
     await openDB();
     state.profile = (await get('profiles', 'active')) || null;
     await loadContent();
   } catch (err) {
-    appEl.replaceChildren(el('p', { class: 'error' }, 'లోపం / Error: ' + err.message));
+    appEl.replaceChildren(el('p', { class: 'error' }, 'Error: ' + err.message));
     return;
   }
   window.addEventListener('hashchange', render);

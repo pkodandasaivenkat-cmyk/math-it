@@ -4,13 +4,13 @@
   "title_en": "Real Numbers",
   "lessons": [
     {
-      "title": "యూక్లిడ్ భాగహార సూత్రం",
+      "title": "యూక్లిడ్ భాగహార సూత్రం (Euclid's Division Lemma)",
       "title_en": "Euclid's Division Lemma",
       "lines": [
-        "ఏ రెండు ధనపూర్ణ సంఖ్యలు a, b అయినా a = bq + r అని రాయవచ్చు.",
-        "ఇక్కడ q భాగఫలం, r శేషం.",
-        "శేషం r ఎప్పుడూ 0 నుండి b కంటే తక్కువ మధ్య ఉంటుంది.",
-        "ఈ సూత్రంతో రెండు సంఖ్యల గరిష్ట ఉమ్మడి భాజకాన్ని కనుగొనవచ్చు."
+        "ఏ రెండు ధనపూర్ణ సంఖ్యలు (positive integers) a, b అయినా a = bq + r అని రాయవచ్చు.",
+        "ఇక్కడ q భాగఫలం (quotient), r శేషం (remainder).",
+        "శేషం (remainder) r ఎప్పుడూ 0 నుండి b కంటే తక్కువ మధ్య ఉంటుంది.",
+        "ఈ సూత్రంతో రెండు సంఖ్యల గరిష్ట ఉమ్మడి భాజకాన్ని (HCF) కనుగొనవచ్చు."
       ],
       "lines_en": [
         "For any two positive integers a and b, we can write a = bq + r.",
@@ -18,16 +18,16 @@
         "The remainder r is always from 0 up to, but less than, b.",
         "This rule helps us find the HCF of two numbers."
       ],
-      "example": "17 ను 5 తో భాగిస్తే: 17 = 5 × 3 + 2. భాగఫలం 3, శేషం 2.",
+      "example": "17 ను 5 తో భాగిస్తే: 17 = 5 × 3 + 2. భాగఫలం (quotient) 3, శేషం (remainder) 2.",
       "example_en": "Dividing 17 by 5: 17 = 5 × 3 + 2. Quotient 3, remainder 2.",
       "keyTerm": "Euclid's division lemma"
     },
     {
-      "title": "ప్రధాన కారణాంకీకరణ",
+      "title": "ప్రధాన కారణాంకీకరణ (Prime Factorisation)",
       "title_en": "Prime Factorisation",
       "lines": [
-        "ప్రధాన సంఖ్య అంటే 1 కంటే పెద్దదై, 1 మరియు తనను మాత్రమే భాగించే సంఖ్య.",
-        "ఒక సంఖ్యను ప్రధాన సంఖ్యల లబ్ధంగా రాయడం ప్రధాన కారణాంకీకరణ.",
+        "ప్రధాన సంఖ్య (prime number) అంటే 1 కంటే పెద్దదై, 1 మరియు తనను మాత్రమే భాగించే సంఖ్య.",
+        "ఒక సంఖ్యను ప్రధాన సంఖ్యల (prime numbers) లబ్ధంగా రాయడం ప్రధాన కారణాంకీకరణ (prime factorisation).",
         "ఉదాహరణకు 12 = 2 × 2 × 3.",
         "ఈ రూపం నుండి HCF, LCM రెండింటినీ సులభంగా కనుగొనవచ్చు."
       ],
@@ -37,7 +37,7 @@
         "For example, 12 = 2 × 2 × 3.",
         "From this form, we can easily find both the HCF and the LCM."
       ],
-      "example": "12 = 2 × 2 × 3, 18 = 2 × 3 × 3. ఉమ్మడి కారణాంకాలు 2 × 3 = 6.",
+      "example": "12 = 2 × 2 × 3, 18 = 2 × 3 × 3. ఉమ్మడి కారణాంకాలు (common factors) 2 × 3 = 6.",
       "example_en": "12 = 2 × 2 × 3, 18 = 2 × 3 × 3. Common factors 2 × 3 = 6.",
       "keyTerm": "Prime factorisation"
     },
@@ -46,7 +46,7 @@
       "title_en": "HCF and LCM",
       "lines": [
         "HCF: రెండు సంఖ్యలను సమానంగా భాగించే అతి పెద్ద సంఖ్య.",
-        "LCM: రెండు సంఖ్యల ఉమ్మడి గుణిజాల్లో అతి చిన్నది.",
+        "LCM: రెండు సంఖ్యల ఉమ్మడి గుణిజాల్లో (common multiples) అతి చిన్నది.",
         "HCF × LCM = మొదటి సంఖ్య × రెండో సంఖ్య.",
         "ఈ సంబంధంతో మీ లెక్కను తనిఖీ చేసుకోవచ్చు."
       ],
@@ -61,13 +61,13 @@
       "keyTerm": "HCF and LCM"
     },
     {
-      "title": "అకరణీయం కాని సంఖ్యలు",
+      "title": "అకరణీయం కాని సంఖ్యలు (Irrational Numbers)",
       "title_en": "Irrational Numbers",
       "lines": [
-        "p/q రూపంలో రాయగలిగే సంఖ్యను అకరణీయ సంఖ్య అంటారు (q ≠ 0).",
-        "√2, √3, √5 వంటి వర్గమూలాలు అకరణీయం కావు.",
-        "అకరణీయ సంఖ్య దశాంశ రూపం అంతమవుతుంది లేదా ఆవర్తనమవుతుంది.",
-        "అకరణీయం కాని సంఖ్య దశాంశ రూపం అంతమవదు, ఆవర్తనం కాదు."
+        "p/q రూపంలో రాయగలిగే సంఖ్యను అకరణీయ సంఖ్య (rational number) అంటారు (q ≠ 0).",
+        "√2, √3, √5 వంటి వర్గమూలాలు అకరణీయం (rational) కావు.",
+        "అకరణీయ సంఖ్య (rational number) దశాంశ రూపం అంతమవుతుంది (terminating decimal) లేదా ఆవర్తనమవుతుంది (repeating).",
+        "అకరణీయం కాని సంఖ్య (irrational number) దశాంశ రూపం అంతమవదు (non-terminating decimal), ఆవర్తనం కాదు."
       ],
       "lines_en": [
         "A number that can be written as p/q (q ≠ 0) is a rational number.",
@@ -75,7 +75,7 @@
         "A rational number's decimal form either terminates or repeats.",
         "An irrational number's decimal form neither terminates nor repeats."
       ],
-      "example": "√2 ను p/q గా రాస్తే వైరుధ్యం వస్తుంది, కాబట్టి √2 అకరణీయం కాదు.",
+      "example": "√2 ను p/q గా రాస్తే వైరుధ్యం వస్తుంది, కాబట్టి √2 అకరణీయం (rational) కాదు.",
       "example_en": "If √2 is written as p/q, a contradiction arises, so √2 is not rational.",
       "keyTerm": "Irrational numbers"
     }
@@ -105,7 +105,7 @@
       "options": ["2", "3", "6", "12"],
       "options_en": ["2", "3", "6", "12"],
       "correct": 2,
-      "mistake": "12 = 2×2×3, 18 = 2×3×3. ఉమ్మడి భాగాలు 2 మరియు 3. గుణిస్తే 6.",
+      "mistake": "12 = 2×2×3, 18 = 2×3×3. ఉమ్మడి భాగాలు (common factors) 2 మరియు 3. గుణిస్తే 6.",
       "mistake_en": "12 = 2×2×3, 18 = 2×3×3. Common parts are 2 and 3. Multiply them: 6."
     },
     {
@@ -118,7 +118,7 @@
       "options": ["8", "10", "12", "24"],
       "options_en": ["8", "10", "12", "24"],
       "correct": 2,
-      "mistake": "4 గుణిజాలు: 4, 8, 12. 6 గుణిజాలు: 6, 12. మొదటి ఉమ్మడి గుణిజం 12.",
+      "mistake": "4 గుణిజాలు (multiples): 4, 8, 12. 6 గుణిజాలు: 6, 12. మొదటి ఉమ్మడి గుణిజం (common multiple) 12.",
       "mistake_en": "Multiples of 4: 4, 8, 12. Multiples of 6: 6, 12. The first common multiple is 12."
     },
     {
@@ -126,12 +126,12 @@
       "topic": "real-numbers",
       "subtopic": "యూక్లిడ్ భాగహారం",
       "difficulty": 1,
-      "question": "17 ను 5 తో భాగిస్తే శేషం ఎంత?",
+      "question": "17 ను 5 తో భాగిస్తే శేషం (remainder) ఎంత?",
       "question_en": "What is the remainder when 17 is divided by 5?",
       "options": ["0", "1", "2", "3"],
       "options_en": ["0", "1", "2", "3"],
       "correct": 2,
-      "mistake": "5 × 3 = 15. 17 − 15 = 2. శేషం 2.",
+      "mistake": "5 × 3 = 15. 17 − 15 = 2. శేషం (remainder) 2.",
       "mistake_en": "5 × 3 = 15. 17 − 15 = 2. The remainder is 2."
     },
     {
@@ -157,7 +157,7 @@
       "options": ["4", "6", "12", "24"],
       "options_en": ["4", "6", "12", "24"],
       "correct": 2,
-      "mistake": "36 = 2×2×3×3, 48 = 2×2×2×2×3. ఉమ్మడి భాగాలు 2×2×3 = 12.",
+      "mistake": "36 = 2×2×3×3, 48 = 2×2×2×2×3. ఉమ్మడి భాగాలు (common factors) 2×2×3 = 12.",
       "mistake_en": "36 = 2×2×3×3, 48 = 2×2×2×2×3. Common parts 2×2×3 = 12."
     },
     {
@@ -170,7 +170,7 @@
       "options": ["18", "24", "36", "72"],
       "options_en": ["18", "24", "36", "72"],
       "correct": 2,
-      "mistake": "LCM కోసం ప్రతి ప్రధాన కారణాంకం గరిష్ట ఘాతం తీసుకోండి: 2², 3². 4 × 9 = 36.",
+      "mistake": "LCM కోసం ప్రతి ప్రధాన కారణాంకం (prime factor) గరిష్ట ఘాతం (highest power) తీసుకోండి: 2², 3². 4 × 9 = 36.",
       "mistake_en": "For LCM, take the highest power of each prime: 2², 3². 4 × 9 = 36."
     },
     {
@@ -180,7 +180,7 @@
       "difficulty": 2,
       "question": "√2 ఏ రకమైన సంఖ్య?",
       "question_en": "What kind of number is √2?",
-      "options": ["అకరణీయ సంఖ్య", "అకరణీయం కాని సంఖ్య", "పూర్ణ సంఖ్య", "సహజ సంఖ్య"],
+      "options": ["అకరణీయ సంఖ్య (rational number)", "అకరణీయం కాని సంఖ్య (irrational number)", "పూర్ణ సంఖ్య (integer)", "సహజ సంఖ్య (natural number)"],
       "options_en": ["Rational number", "Irrational number", "Integer", "Natural number"],
       "correct": 1,
       "mistake": "√2 ను p/q గా రాయలేము. దశాంశ రూపం అంతం కాదు, ఆవర్తనం కాదు.",
@@ -193,10 +193,10 @@
       "difficulty": 2,
       "question": "13/8 యొక్క దశాంశ రూపం ఎలా ఉంటుంది?",
       "question_en": "What is the decimal form of 13/8?",
-      "options": ["అంతమయ్యే దశాంశం", "ఆవర్తన దశాంశం", "అంతం కాని దశాంశం", "పూర్ణ సంఖ్య"],
+      "options": ["అంతమయ్యే దశాంశం (terminating decimal)", "ఆవర్తన దశాంశం (repeating decimal)", "అంతం కాని దశాంశం (non-terminating decimal)", "పూర్ణ సంఖ్య (integer)"],
       "options_en": ["Terminating decimal", "Repeating decimal", "Non-terminating decimal", "Integer"],
       "correct": 0,
-      "mistake": "హరంలో 8 = 2 × 2 × 2 మాత్రమే ఉంది. అంటే దశాంశం అంతమవుతుంది: 1.625.",
+      "mistake": "హరంలో (denominator) 8 = 2 × 2 × 2 మాత్రమే ఉంది. అంటే దశాంశం అంతమవుతుంది: 1.625.",
       "mistake_en": "The denominator 8 = 2 × 2 × 2 has only the prime 2. So the decimal terminates: 1.625."
     },
     {
@@ -206,10 +206,10 @@
       "difficulty": 3,
       "question": "3 + √5 ఏ రకమైన సంఖ్య?",
       "question_en": "What kind of number is 3 + √5?",
-      "options": ["అకరణీయ సంఖ్య", "అకరణీయం కాని సంఖ్య", "పూర్ణ సంఖ్య", "సున్న"],
+      "options": ["అకరణీయ సంఖ్య (rational number)", "అకరణీయం కాని సంఖ్య (irrational number)", "పూర్ణ సంఖ్య (integer)", "సున్న"],
       "options_en": ["Rational number", "Irrational number", "Integer", "Zero"],
       "correct": 1,
-      "mistake": "అకరణీయ సంఖ్యకు √5 ను తీసేస్తే మిగిలిన భాగం అకరణీయం కావాలి. √5 అకరణీయం కాదు కాబట్టి మొత్తం కూడా అకరణీయం కాదు.",
+      "mistake": "అకరణీయ సంఖ్యకు (rational number) √5 ను తీసేస్తే మిగిలిన భాగం అకరణీయం కావాలి. √5 అకరణీయం కాదు కాబట్టి మొత్తం కూడా అకరణీయం కాదు.",
       "mistake_en": "If the sum were rational, subtracting 3 would leave √5 rational. Since √5 is not rational, 3 + √5 is not rational either."
     },
     {
@@ -245,7 +245,7 @@
       "difficulty": 3,
       "question": "7 × 11 × 13 + 13 అనే సంఖ్య ఏ రకం?",
       "question_en": "What kind of number is 7 × 11 × 13 + 13?",
-      "options": ["ప్రధాన సంఖ్య", "సంయుక్త సంఖ్య", "అకరణీయం కాని సంఖ్య", "సున్న"],
+      "options": ["ప్రధాన సంఖ్య (prime number)", "సంయుక్త సంఖ్య (composite number)", "అకరణీయం కాని సంఖ్య (irrational number)", "సున్న"],
       "options_en": ["Prime number", "Composite number", "Irrational number", "Zero"],
       "correct": 1,
       "mistake": "13 ను ఉమ్మడిగా తీయండి: 13 × (7 × 11 + 1) = 13 × 78. ఇది రెండు కంటే ఎక్కువ భాగాలున్న సంఖ్య.",

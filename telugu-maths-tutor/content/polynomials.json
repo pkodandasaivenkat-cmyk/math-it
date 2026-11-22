@@ -4,13 +4,13 @@
   "title_en": "Polynomials",
   "lessons": [
     {
-      "title": "బహుపది అంటే ఏమిటి?",
+      "title": "బహుపది (polynomial) అంటే ఏమిటి?",
       "title_en": "What is a polynomial?",
       "lines": [
-        "x వంటి చలరాశి ఉన్న బీజీయ పదాల మొత్తాన్ని బహుపది అంటారు.",
-        "బహుపది ఘాతం అంటే అందులోని అత్యధిక ఘాతం.",
-        "ఘాతం 1 అయితే రేఖీయ, 2 అయితే వర్గ బహుపది, 3 అయితే ఘన బహుపది.",
-        "ఘాతాంకం ఎప్పుడూ పూర్ణ సంఖ్య మాత్రమే."
+        "x వంటి చలరాశి (variable) ఉన్న బీజీయ పదాల (algebraic terms) మొత్తాన్ని బహుపది (polynomial) అంటారు.",
+        "బహుపది (polynomial) ఘాతం (degree) అంటే అందులోని అత్యధిక ఘాతం.",
+        "ఘాతం (degree) 1 అయితే రేఖీయ (linear), 2 అయితే వర్గ బహుపది (quadratic polynomial), 3 అయితే ఘన బహుపది (cubic polynomial).",
+        "ఘాతాంకం (exponent) ఎప్పుడూ పూర్ణ సంఖ్య మాత్రమే."
       ],
       "lines_en": [
         "A polynomial is a sum of algebraic terms that contain a variable such as x.",
@@ -18,18 +18,18 @@
         "Degree 1 is linear, degree 2 is quadratic, and degree 3 is cubic.",
         "The power (exponent) is always a whole number."
       ],
-      "example": "p(x) = 3x³ + x − 2 లో అత్యధిక ఘాతం 3. కాబట్టి ఇది ఘన బహుపది.",
+      "example": "p(x) = 3x³ + x − 2 లో అత్యధిక ఘాతం (degree) 3. కాబట్టి ఇది ఘన బహుపది (cubic polynomial).",
       "example_en": "In p(x) = 3x³ + x − 2 the highest power is 3, so it is a cubic polynomial.",
       "keyTerm": "Polynomial and degree"
     },
     {
-      "title": "బహుపది యొక్క సున్నలు",
+      "title": "బహుపది (polynomial) యొక్క సున్నలు (zeros)",
       "title_en": "Zeros of a polynomial",
       "lines": [
-        "p(x) = 0 చేసే x విలువలను సున్నలు అంటారు.",
+        "p(x) = 0 చేసే x విలువలను సున్నలు (zeros) అంటారు.",
         "x = α అయితే p(α) = 0 అయి ఉండాలి.",
-        "ax² + bx + c కు సున్నల మొత్తం −b/a.",
-        "సున్నల లబ్ధం c/a."
+        "ax² + bx + c కు సున్నల మొత్తం (sum of zeroes) −b/a.",
+        "సున్నల లబ్ధం (product of zeroes) c/a."
       ],
       "lines_en": [
         "The values of x that make p(x) = 0 are called the zeros.",
@@ -37,18 +37,18 @@
         "For ax² + bx + c, the sum of the zeros is −b/a.",
         "The product of the zeros is c/a."
       ],
-      "example": "x² − 5x + 6 లో x = 2: 4 − 10 + 6 = 0. కాబట్టి 2 ఒక సున్న, మరో సున్న 3.",
+      "example": "x² − 5x + 6 లో x = 2: 4 − 10 + 6 = 0. కాబట్టి 2 ఒక సున్న (zero), మరో సున్న 3.",
       "example_en": "In x² − 5x + 6, put x = 2: 4 − 10 + 6 = 0. So 2 is a zero, and the other zero is 3.",
       "keyTerm": "Zeros of a polynomial"
     },
     {
-      "title": "శేష సిద్ధాంతం",
+      "title": "శేష సిద్ధాంతం (remainder theorem)",
       "title_en": "Remainder theorem",
       "lines": [
-        "బహుపదిని (x − a) తో భాగిస్తే వచ్చే శేషం p(a).",
-        "దీనిని శేష సిద్ధాంతం అంటారు.",
-        "p(a) = 0 అయితే (x − a) ఒక కారణాంకం అవుతుంది.",
-        "ఈ నియమంతో భాగించకుండానే శేషాన్ని కనుగొనవచ్చు."
+        "బహుపదిని (polynomial) (x − a) తో భాగిస్తే వచ్చే శేషం (remainder) p(a).",
+        "దీనిని శేష సిద్ధాంతం (remainder theorem) అంటారు.",
+        "p(a) = 0 అయితే (x − a) ఒక కారణాంకం (factor) అవుతుంది.",
+        "ఈ నియమంతో భాగించకుండానే శేషాన్ని (remainder) కనుగొనవచ్చు."
       ],
       "lines_en": [
         "When a polynomial is divided by (x − a), the remainder is p(a).",
@@ -56,7 +56,7 @@
         "If p(a) = 0, then (x − a) is a factor.",
         "With this rule, you can find the remainder without doing the division."
       ],
-      "example": "p(x) = x³ − 3x + 2 అయితే p(2) = 8 − 6 + 2 = 4. కాబట్టి (x − 2) తో భాగిస్తే శేషం 4.",
+      "example": "p(x) = x³ − 3x + 2 అయితే p(2) = 8 − 6 + 2 = 4. కాబట్టి (x − 2) తో భాగిస్తే శేషం (remainder) 4.",
       "example_en": "If p(x) = x³ − 3x + 2, then p(2) = 8 − 6 + 2 = 4. So dividing by (x − 2) leaves remainder 4.",
       "keyTerm": "Remainder theorem"
     }
@@ -81,12 +81,12 @@
       "topic": "polynomials",
       "subtopic": "సున్నలు",
       "difficulty": 1,
-      "question": "p(x) = x² − 5x + 6 యొక్క సున్నలు ఏవి?",
+      "question": "p(x) = x² − 5x + 6 యొక్క సున్నలు (zeros) ఏవి?",
       "question_en": "What are the zeros of p(x) = x² − 5x + 6?",
       "options": ["2, 3", "−2, −3", "1, 6", "−1, −6"],
       "options_en": ["2, 3", "−2, −3", "1, 6", "−1, −6"],
       "correct": 0,
-      "mistake": "x = 2 పెడితే 4 − 10 + 6 = 0. కాబట్టి 2 ఒక సున్న.",
+      "mistake": "x = 2 పెడితే 4 − 10 + 6 = 0. కాబట్టి 2 ఒక సున్న (zero).",
       "mistake_en": "Put x = 2: 4 − 10 + 6 = 0. So 2 is a zero."
     },
     {
@@ -94,12 +94,12 @@
       "topic": "polynomials",
       "subtopic": "సున్నల మొత్తం",
       "difficulty": 1,
-      "question": "x² − 7x + 12 యొక్క సున్నల మొత్తం ఎంత?",
+      "question": "x² − 7x + 12 యొక్క సున్నల మొత్తం (sum of zeroes) ఎంత?",
       "question_en": "What is the sum of the zeros of x² − 7x + 12?",
       "options": ["3", "4", "7", "−7"],
       "options_en": ["3", "4", "7", "−7"],
       "correct": 2,
-      "mistake": "మొత్తం = −b/a. ఇక్కడ b = −7, a = 1. కాబట్టి 7.",
+      "mistake": "మొత్తం (sum of zeroes) = −b/a. ఇక్కడ b = −7, a = 1. కాబట్టి 7.",
       "mistake_en": "Sum = −b/a. Here b = −7 and a = 1, so the sum is 7."
     },
     {
@@ -107,12 +107,12 @@
       "topic": "polynomials",
       "subtopic": "సున్నల లబ్ధం",
       "difficulty": 1,
-      "question": "2x² + 6x + 4 యొక్క సున్నల లబ్ధం ఎంత?",
+      "question": "2x² + 6x + 4 యొక్క సున్నల లబ్ధం (product of zeroes) ఎంత?",
       "question_en": "What is the product of the zeros of 2x² + 6x + 4?",
       "options": ["2", "−2", "3", "6"],
       "options_en": ["2", "−2", "3", "6"],
       "correct": 0,
-      "mistake": "లబ్ధం = c/a = 4/2 = 2. (సున్నలు −1, −2; లబ్ధం 2).",
+      "mistake": "లబ్ధం (product of zeroes) = c/a = 4/2 = 2. (సున్నలు (zeros) −1, −2; లబ్ధం 2).",
       "mistake_en": "Product = c/a = 4/2 = 2. (The zeros are −1 and −2; their product is 2.)"
     },
     {
@@ -120,12 +120,12 @@
       "topic": "polynomials",
       "subtopic": "ఘాతం",
       "difficulty": 1,
-      "question": "3x³ + x − 2 యొక్క ఘాతం ఎంత?",
+      "question": "3x³ + x − 2 యొక్క ఘాతం (degree) ఎంత?",
       "question_en": "What is the degree of 3x³ + x − 2?",
       "options": ["1", "2", "3", "4"],
       "options_en": ["1", "2", "3", "4"],
       "correct": 2,
-      "mistake": "అన్ని పదాల్లో అత్యధిక ఘాతం చూడండి. x³ ఉంది, కాబట్టి ఘాతం 3.",
+      "mistake": "అన్ని పదాల్లో (terms) అత్యధిక ఘాతం చూడండి. x³ ఉంది, కాబట్టి ఘాతం 3.",
       "mistake_en": "Look for the highest power among all terms. There is x³, so the degree is 3."
     },
     {
@@ -133,12 +133,12 @@
       "topic": "polynomials",
       "subtopic": "సున్నలు",
       "difficulty": 2,
-      "question": "x² − 4 యొక్క సున్నలు ఏవి?",
+      "question": "x² − 4 యొక్క సున్నలు (zeros) ఏవి?",
       "question_en": "What are the zeros of x² − 4?",
       "options": ["2, −2", "4, −4", "2, 4", "−2, −4"],
       "options_en": ["2, −2", "4, −4", "2, 4", "−2, −4"],
       "correct": 0,
-      "mistake": "x² = 4 అయితే x = ±2. రెండు సున్నలు ఉన్నాయి.",
+      "mistake": "x² = 4 అయితే x = ±2. రెండు సున్నలు (zeros) ఉన్నాయి.",
       "mistake_en": "If x² = 4, then x = ±2. There are two zeros."
     },
     {
@@ -146,12 +146,12 @@
       "topic": "polynomials",
       "subtopic": "భాగహారం",
       "difficulty": 2,
-      "question": "x² + 3x + 2 ను (x + 1) తో భాగిస్తే భాగఫలం ఏది?",
+      "question": "x² + 3x + 2 ను (x + 1) తో భాగిస్తే భాగఫలం (quotient) ఏది?",
       "question_en": "When x² + 3x + 2 is divided by (x + 1), what is the quotient?",
       "options": ["x + 1", "x + 2", "x + 3", "x − 2"],
       "options_en": ["x + 1", "x + 2", "x + 3", "x − 2"],
       "correct": 1,
-      "mistake": "x² + 3x + 2 = (x + 1)(x + 2). కాబట్టి భాగఫలం x + 2.",
+      "mistake": "x² + 3x + 2 = (x + 1)(x + 2). కాబట్టి భాగఫలం (quotient) x + 2.",
       "mistake_en": "x² + 3x + 2 = (x + 1)(x + 2). So the quotient is x + 2."
     },
     {
@@ -172,12 +172,12 @@
       "topic": "polynomials",
       "subtopic": "బహుపది నిర్మాణం",
       "difficulty": 2,
-      "question": "సున్నలు 1 మరియు −3 అయిన వర్గ బహుపది ఏది?",
+      "question": "సున్నలు (zeros) 1 మరియు −3 అయిన వర్గ బహుపది (quadratic polynomial) ఏది?",
       "question_en": "Which quadratic polynomial has zeros 1 and −3?",
       "options": ["x² + 2x − 3", "x² − 2x − 3", "x² + 2x + 3", "x² − 2x + 3"],
       "options_en": ["x² + 2x − 3", "x² − 2x − 3", "x² + 2x + 3", "x² − 2x + 3"],
       "correct": 0,
-      "mistake": "మొత్తం 1 + (−3) = −2, లబ్ధం −3. కాబట్టి x² − (మొత్తం)x + లబ్ధం = x² + 2x − 3.",
+      "mistake": "మొత్తం (sum of zeroes) 1 + (−3) = −2, లబ్ధం (product of zeroes) −3. కాబట్టి x² − (మొత్తం)x + లబ్ధం = x² + 2x − 3.",
       "mistake_en": "Sum = 1 + (−3) = −2 and product = −3. So x² − (sum)x + product = x² + 2x − 3."
     },
     {
@@ -185,12 +185,12 @@
       "topic": "polynomials",
       "subtopic": "సున్నలు",
       "difficulty": 3,
-      "question": "x² − 2x − 8 యొక్క సున్నలు ఏవి?",
+      "question": "x² − 2x − 8 యొక్క సున్నలు (zeros) ఏవి?",
       "question_en": "What are the zeros of x² − 2x − 8?",
       "options": ["4, −2", "−4, 2", "2, −4", "8, −1"],
       "options_en": ["4, −2", "−4, 2", "2, −4", "8, −1"],
       "correct": 0,
-      "mistake": "(x − 4)(x + 2) = x² − 2x − 8. కాబట్టి సున్నలు 4 మరియు −2.",
+      "mistake": "(x − 4)(x + 2) = x² − 2x − 8. కాబట్టి సున్నలు (zeros) 4 మరియు −2.",
       "mistake_en": "(x − 4)(x + 2) = x² − 2x − 8. So the zeros are 4 and −2."
     },
     {
@@ -198,7 +198,7 @@
       "topic": "polynomials",
       "subtopic": "గుణకం k",
       "difficulty": 3,
-      "question": "x² + kx + 6 కు 2 ఒక సున్న అయితే k ఎంత?",
+      "question": "x² + kx + 6 కు 2 ఒక సున్న (zero) అయితే k ఎంత?",
       "question_en": "If 2 is a zero of x² + kx + 6, what is k?",
       "options": ["−5", "5", "−4", "4"],
       "options_en": ["−5", "5", "−4", "4"],
@@ -211,7 +211,7 @@
       "topic": "polynomials",
       "subtopic": "సున్నల విలోమాలు",
       "difficulty": 3,
-      "question": "2x² − 3x + 1 యొక్క సున్నలు α, β అయితే 1/α + 1/β ఎంత?",
+      "question": "2x² − 3x + 1 యొక్క సున్నలు (zeros) α, β అయితే 1/α + 1/β ఎంత?",
       "question_en": "If α and β are the zeros of 2x² − 3x + 1, what is 1/α + 1/β?",
       "options": ["1", "2", "3", "6"],
       "options_en": ["1", "2", "3", "6"],
@@ -224,12 +224,12 @@
       "topic": "polynomials",
       "subtopic": "కారణాంకం",
       "difficulty": 3,
-      "question": "x + 1, x³ + x² + x + 1 కు కారణాంకమా?",
+      "question": "x + 1, x³ + x² + x + 1 కు కారణాంకమా (factor)?",
       "question_en": "Is x + 1 a factor of x³ + x² + x + 1?",
-      "options": ["అవును", "కాదు", "శేషం 1", "శేషం 2"],
+      "options": ["అవును", "కాదు", "శేషం (remainder) 1", "శేషం (remainder) 2"],
       "options_en": ["Yes", "No", "Remainder 1", "Remainder 2"],
       "correct": 0,
-      "mistake": "x = −1 పెడితే −1 + 1 − 1 + 1 = 0. శేషం 0, కాబట్టి అవును.",
+      "mistake": "x = −1 పెడితే −1 + 1 − 1 + 1 = 0. శేషం (remainder) 0, కాబట్టి అవును.",
       "mistake_en": "Put x = −1: −1 + 1 − 1 + 1 = 0. The remainder is 0, so yes."
     }
   ]

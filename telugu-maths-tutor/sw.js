@@ -1,5 +1,5 @@
-// sw.js - service worker for Telugu Maths Tutor
-const CACHE = 'tmt-v1';
+// sw.js - service worker for గణితం
+const CACHE = 'tmt-v11';
 const ASSETS = [
   './',
   './index.html',

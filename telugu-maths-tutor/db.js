@@ -1,4 +1,4 @@
-// db.js - minimal IndexedDB wrapper for Telugu Maths Tutor
+// db.js - minimal IndexedDB wrapper for గణితం
 // DB "tmt-db" v1. Stores: profiles, attempts, topicStats, streaks.
 
 const DB_NAME = 'tmt-db';

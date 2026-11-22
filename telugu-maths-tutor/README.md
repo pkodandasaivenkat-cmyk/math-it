@@ -1,4 +1,4 @@
-# Telugu Maths Tutor
+# గణితం
 
 A mobile-first Progressive Web App (PWA) that helps Class 10 students in Andhra Pradesh government schools practise Maths in Telugu. It needs almost no typing: answers are chosen with large buttons. Explanations and practice are in Telugu, with English alongside for exam understanding.
 
@@ -42,3 +42,4 @@ Open `parent.html` (linked from the app) and paste the code. The page decodes it
 - `db.js` – IndexedDB storage
 - `sw.js`, `manifest.webmanifest` – offline support and installation
 - `parent.html` – share-code viewer
+
